@@ -12,10 +12,28 @@
 
 #include "../include/so_long.h"
 #include "../include/ft_printf.h"
+#include "../include/libft.h"
+
+void	extension_check(char *map)
+{
+	int	len;
+
+	len = ft_strlen(map);
+	if (len < 4)
+	{
+		error_check(EXTENSION_ERROR);
+		exit(1);
+	}
+	else if (len >= 4 && ft_strncmp(&map[len - 4], ".ber", 4))
+	{
+		error_check(EXTENSION_ERROR);
+		exit(1);
+	}
+}
 
 void	error_check(int error)
 {
-	char	*error_message[12];
+	char	*error_message[13];
 
 	error_message[FEW_ARGV_ERROR] = "(Too few arguments)";
 	error_message[MANY_ARGV_ERROR] = "(Too many arguments)";
@@ -28,7 +46,9 @@ void	error_check(int error)
 	error_message[WALLS_ERROR] = "(The map isn't surrounded by walls)";
 	error_message[SIZE_ERROR] = "(The map isn't rectangular)";
 	error_message[PATH_EXIT_ERROR] = "(No path leading to the Exit)";
-	error_message[PATH_COLLECTIBLE_ERROR] = "(No pat leading to at lest 1 Colletible)";
+	error_message[PATH_COLLECTIBLE_ERROR] = "(No pat leading to at lest 1 \
+	Colletible)";
+	error_message[NO_MAP_ERROR] = "(Can't load the map)";
 	ft_printf("Error\n%s\n", error_message[error]);
 	exit (1);
 }

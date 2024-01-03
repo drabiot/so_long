@@ -50,7 +50,11 @@ SRCS_DIR	=		src/
 OBJS_DIR	=		obj/
 
 SRCS		=		main.c \
-					error_check.c
+					error_check.c \
+					create_map.c \
+					get_next_line.c \
+					get_next_line_utils.c \
+					display.c
 
 OBJS		=		$(SRCS:.c=.o)
 

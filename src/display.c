@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchartie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 19:27:33 by tchartie          #+#    #+#             */
-/*   Updated: 2024/01/03 18:39:22 by tchartie         ###   ########.fr       */
+/*   Created: 2024/01/03 19:28:14 by tchartie          #+#    #+#             */
+/*   Updated: 2024/01/03 19:34:57 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+#include <stdio.h>
 
-int	main(int argc, char **argv)
+void	display(t_map **map)
 {
-	t_map	*map;	
+	int	j;
 
-	map = NULL;
-	if (argc < 2)
-		error_check(FEW_ARGV_ERROR);
-	else if (argc > 2)
-		error_check(MANY_ARGV_ERROR);
-	else
+	printf("Height : %d\n", (*map)->height);
+	printf("Width : %d\n", (*map)->width);
+	printf("Map :\n");
+	j = 0;
+	while ((*map)->display_map[j])
 	{
-		extension_check(argv[1]);
-		map_init(&map, argv[1]);
-		display(&map);
+		printf("%s\n", (*map)->display_map[j]);
+		j++;
 	}
 }
