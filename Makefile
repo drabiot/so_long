@@ -49,7 +49,8 @@ MLX_DIR		=		mlx42
 SRCS_DIR	=		src/
 OBJS_DIR	=		obj/
 
-SRCS		=		main.c
+SRCS		=		main.c \
+					error_check.c
 
 OBJS		=		$(SRCS:.c=.o)
 
