@@ -14,6 +14,20 @@
 #include "../include/ft_printf.h"
 #include "../include/libft.h"
 
+void	free_struct_map(t_map **map)
+{
+	int	i;
+
+	free ((*map)->height);
+	free ((*map)->width);
+	while ((*map)->display_map[i])
+	{
+		free((*map)->display_map[i]);
+		i++;
+	}
+	free ((*map)->display_map);
+}
+
 void	extension_check(char *map)
 {
 	int	len;
@@ -46,7 +60,7 @@ void	error_check(int error)
 	error_message[WALLS_ERROR] = "(The map isn't surrounded by walls)";
 	error_message[SIZE_ERROR] = "(The map isn't rectangular)";
 	error_message[PATH_EXIT_ERROR] = "(No path leading to the Exit)";
-	error_message[PATH_COLLECTIBLE_ERROR] = "(No path leading to at lest 1 \
+	error_message[PATH_COLLECTIBLE_ERROR] = "(No path leading to at least 1 \
 Colletible)";
 	error_message[NO_MAP_ERROR] = "(Can't load the map)";
 	error_message[MAP_ERROR] = "(The map's composed characters \

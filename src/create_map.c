@@ -14,6 +14,30 @@
 #include "../include/libft.h"
 #include <fcntl.h>
 
+static void	add_exit_pos(t_map **map)
+{
+	t_map	*current;
+	int		i;
+	int		j;
+
+	current = *map;
+	i = 0;
+	while (current->display_map[i])
+	{
+		j = 0;
+		while (current->display_map[i][j])
+		{
+			if (current->display_map[i][j] == 'E')
+			{
+				current->pos_x_exit = j;
+				current->pos_y_exit = i;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
 t_map	*map_node_init(t_map **map, char *full_map, int height, int width)
 {
 	t_map	*current;
@@ -35,6 +59,7 @@ t_map	*map_node_init(t_map **map, char *full_map, int height, int width)
 	current->width = width;
 	current->height = height;
 	current->display_map = split_map;
+	add_exit_pos(&current);
 	return (current);
 }
 

@@ -28,4 +28,5 @@ void	display(t_map **map, t_player **player)
 		j++;
 	}
 	printf("PLAYER:\nPos_x : %d\nPos_y : %d\n", (*player)->pos_x, (*player)->pos_y);
+	printf("EXIT:\nPos_x : %d\nPos_y : %d\n", (*map)->pos_x_exit, (*map)->pos_y_exit);
 }

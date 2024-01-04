@@ -42,6 +42,8 @@ typedef struct s_map
 	int		height;
 	int		width;
 	char	**display_map;
+	int		pos_x_exit;
+	int		pos_y_exit;
 }			t_map;
 
 typedef struct s_player
@@ -59,6 +61,7 @@ void	check_walls(t_map **map);
 void	player_init(t_map **map, t_player **player);
 void	ft_flood_fill(t_map **map, int x, int y);
 void	check_path(t_map **map, t_player **player);
+void	free_struct_map(t_map **map);
 
 void	display(t_map **map, t_player **player);
 

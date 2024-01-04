@@ -11,6 +11,44 @@
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+#include "../include/libft.h"
+
+static void	copy_base_struct(t_map **map, t_map *copy)
+{
+	copy->height = (*map)->height;
+	copy->width = (*map)->width;
+	copy->display_map = malloc(sizeof(char *) * copy->height);
+	if (!copy->display_map)
+	{
+		free(copy);
+		exit(1);
+	}
+}
+
+static t_map	*copy_struct(t_map **map)
+{
+	t_map	*copy;
+	int		i;
+
+	copy = malloc(sizeof(t_map));
+	if (!copy)
+		exit (1);
+	copy_base_struct(map, copy);
+	i = 0;
+	while (i < copy->height)
+	{
+		copy->display_map[i] = ft_strdup((*map)->display_map[i]);
+		if (!copy->display_map[i])
+		{
+			free(copy->display_map);
+			free(copy);
+			exit(1);
+		}
+		i++;
+	}
+	copy->display_map[copy->height] = NULL;
+	return (copy);
+}
 
 void	player_init(t_map **map, t_player **player)
 {
@@ -59,21 +97,23 @@ void	ft_flood_fill(t_map **map, int x, int y)
 
 void	check_path(t_map **map, t_player **player)
 {
-	int	i;
-	int	j;
+	t_map	*copy;
+	int		i;
+	int		j;
 
 	if (!map || !*map)
 		return ;
-	ft_flood_fill(map, (*player)->pos_x, (*player)->pos_y);
+	copy = copy_struct(map);
+	ft_flood_fill(&copy, (*player)->pos_x, (*player)->pos_y);
 	i = 0;
-	while ((*map)->display_map[i])
+	while (copy->display_map[i])
 	{
 		j = 0;
-		while ((*map)->display_map[i][j])
+		while (copy->display_map[i][j])
 		{
-			if ((*map)->display_map[i][j] == 'E')
+			if (copy->display_map[i][j] == 'E')
 				error_check(PATH_EXIT_ERROR);
-			else if ((*map)->display_map[i][j] == 'C')
+			else if (copy->display_map[i][j] == 'C')
 				error_check(PATH_COLLECTIBLE_ERROR);
 			j++;
 		}
