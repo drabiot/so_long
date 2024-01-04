@@ -33,7 +33,7 @@ void	extension_check(char *map)
 
 void	error_check(int error)
 {
-	char	*error_message[13];
+	char	*error_message[14];
 
 	error_message[FEW_ARGV_ERROR] = "(Too few arguments)";
 	error_message[MANY_ARGV_ERROR] = "(Too many arguments)";
@@ -46,9 +46,11 @@ void	error_check(int error)
 	error_message[WALLS_ERROR] = "(The map isn't surrounded by walls)";
 	error_message[SIZE_ERROR] = "(The map isn't rectangular)";
 	error_message[PATH_EXIT_ERROR] = "(No path leading to the Exit)";
-	error_message[PATH_COLLECTIBLE_ERROR] = "(No pat leading to at lest 1 \
-	Colletible)";
+	error_message[PATH_COLLECTIBLE_ERROR] = "(No path leading to at lest 1 \
+Colletible)";
 	error_message[NO_MAP_ERROR] = "(Can't load the map)";
+	error_message[MAP_ERROR] = "(The map's composed characters \
+isn't correct)";
 	ft_printf("Error\n%s\n", error_message[error]);
 	exit (1);
 }

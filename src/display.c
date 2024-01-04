@@ -11,13 +11,14 @@
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+#include "../include/libft.h"
 #include <stdio.h>
 
-void	display(t_map **map)
+void	display(t_map **map, t_player **player)
 {
 	int	j;
 
-	printf("Height : %d\n", (*map)->height);
+	printf("MAP:\nHeight : %d\n", (*map)->height);
 	printf("Width : %d\n", (*map)->width);
 	printf("Map :\n");
 	j = 0;
@@ -26,4 +27,5 @@ void	display(t_map **map)
 		printf("%s\n", (*map)->display_map[j]);
 		j++;
 	}
+	printf("PLAYER:\nPos_x : %d\nPos_y : %d\n", (*player)->pos_x, (*player)->pos_y);
 }

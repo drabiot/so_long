@@ -24,7 +24,7 @@ t_map	*map_node_init(t_map **map, char *full_map, int height, int width)
 	split_map = ft_split(full_map, '\n');
 	while (split_map[i])
 	{
-		if ((int)ft_strlen(split_map[i]) + 1 != width)
+		if ((int)ft_strlen(split_map[i]) != width)
 			error_check(SIZE_ERROR);
 		i++;
 	}
@@ -32,7 +32,7 @@ t_map	*map_node_init(t_map **map, char *full_map, int height, int width)
 	current = malloc(sizeof(t_map));
 	if (!current)
 		return (NULL);
-	current->width = width - 1;
+	current->width = width;
 	current->height = height;
 	current->display_map = split_map;
 	return (current);
@@ -63,5 +63,6 @@ void	map_init(t_map **map, char *arg)
 		line = get_next_line(fd);
 		height++;
 	}
-	*map = map_node_init(map, full_map, height, width);
+	*map = map_node_init(map, full_map, height, width - 1);
+	check_map(map);
 }

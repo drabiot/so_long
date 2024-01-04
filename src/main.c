@@ -6,15 +6,18 @@
 /*   By: tchartie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:27:33 by tchartie          #+#    #+#             */
-/*   Updated: 2024/01/03 18:39:22 by tchartie         ###   ########.fr       */
+/*   Updated: 2024/01/04 20:18:19 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+#include "../include/libft.h"
 
 int	main(int argc, char **argv)
 {
-	t_map	*map;	
+	t_map		*map;
+	t_player	*player;
+	char		*arg;	
 
 	map = NULL;
 	if (argc < 2)
@@ -23,8 +26,11 @@ int	main(int argc, char **argv)
 		error_check(MANY_ARGV_ERROR);
 	else
 	{
+		arg = ft_strjoin("maps/", argv[1]);
 		extension_check(argv[1]);
-		map_init(&map, argv[1]);
-		display(&map);
+		map_init(&map, arg);
+		player_init(&map, &player);
+		check_path(&map, &player);
+		display(&map, &player);
 	}
 }

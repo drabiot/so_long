@@ -34,6 +34,7 @@ enum	e_error
 	PATH_EXIT_ERROR,
 	PATH_COLLECTIBLE_ERROR,
 	NO_MAP_ERROR,
+	MAP_ERROR,
 } ;
 
 typedef struct s_map
@@ -43,12 +44,23 @@ typedef struct s_map
 	char	**display_map;
 }			t_map;
 
+typedef struct s_player
+{
+	int	pos_x;
+	int	pos_y;
+}		t_player;
+
 void	error_check(int error);
 void	extension_check(char *map);
 void	map_init(t_map **map, char *arg);
 t_map	*map_node_init(t_map **map, char *full_map, int height, int width);
+void	check_map(t_map **map);
+void	check_walls(t_map **map);
+void	player_init(t_map **map, t_player **player);
+void	ft_flood_fill(t_map **map, int x, int y);
+void	check_path(t_map **map, t_player **player);
 
-void	display(t_map **map);
+void	display(t_map **map, t_player **player);
 
 /* ********************************************************** */
 /*                                                            */

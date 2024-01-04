@@ -54,7 +54,10 @@ SRCS		=		main.c \
 					create_map.c \
 					get_next_line.c \
 					get_next_line_utils.c \
-					display.c
+					check_map.c \
+					check_walls.c \
+					check_path.c \
+					display.c 
 
 OBJS		=		$(SRCS:.c=.o)
 
