@@ -26,11 +26,14 @@ int	main(int argc, char **argv)
 		error_check(MANY_ARGV_ERROR);
 	else
 	{
-		arg = ft_strjoin("maps/", argv[1]);
+		arg = ft_strjoin(ft_strdup("maps/"), ft_strdup(argv[1]));
 		extension_check(argv[1]);
 		map_init(&map, arg);
 		player_init(&map, &player);
 		check_path(&map, &player);
 		display(&map, &player);
+		free(player);
+		free_struct_map(map);
+		free(arg);
 	}
 }

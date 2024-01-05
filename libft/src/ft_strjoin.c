@@ -35,5 +35,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!buffer)
 		return (NULL);
 	buffer = ft_strcat(s1, s2, buffer);
+	free((char *)s1);
+	free((char *)s2);
 	return (buffer);
 }

@@ -46,6 +46,7 @@ t_map	*map_node_init(t_map **map, char *full_map, int height, int width)
 
 	i = 0;
 	split_map = ft_split(full_map, '\n');
+	free(full_map);
 	while (split_map[i])
 	{
 		if ((int)ft_strlen(split_map[i]) != width)
@@ -82,7 +83,7 @@ void	map_init(t_map **map, char *arg)
 		width = 0;
 		while (line[width])
 			width++;
-		full_map = ft_strjoin(full_map, line);
+		full_map = ft_strjoin(full_map, ft_strdup(line));
 		if (line)
 			free(line);
 		line = get_next_line(fd);

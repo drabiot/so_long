@@ -14,18 +14,36 @@
 #include "../include/ft_printf.h"
 #include "../include/libft.h"
 
-void	free_struct_map(t_map **map)
+void	free_struct_map(t_map *map)
 {
 	int	i;
 
-	free ((*map)->height);
-	free ((*map)->width);
-	while ((*map)->display_map[i])
+	i = 0;
+	if (!map)
+		return ;
+	while (map->display_map[i])
 	{
-		free((*map)->display_map[i]);
+		free(map->display_map[i]);
 		i++;
 	}
-	free ((*map)->display_map);
+	free(map->display_map);
+	free (map);
+}
+
+/*
+** Free the given matrix & its arrays
+*/
+void	free_matrix(char **matrix)
+{
+	int	i;
+
+	i = 0;
+	while (matrix[i])
+	{
+		free(matrix[i]);
+		i++;
+	}
+	free(matrix);
 }
 
 void	extension_check(char *map)

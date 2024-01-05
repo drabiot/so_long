@@ -17,7 +17,8 @@ static void	copy_base_struct(t_map **map, t_map *copy)
 {
 	copy->height = (*map)->height;
 	copy->width = (*map)->width;
-	copy->display_map = malloc(sizeof(char *) * copy->height);
+	copy->display_map = NULL;
+	copy->display_map = malloc(sizeof(char *) * (copy->height + 1));
 	if (!copy->display_map)
 	{
 		free(copy);
@@ -46,19 +47,20 @@ static t_map	*copy_struct(t_map **map)
 		}
 		i++;
 	}
-	copy->display_map[copy->height] = NULL;
 	return (copy);
 }
 
 void	player_init(t_map **map, t_player **player)
 {
-	int			i;
-	int			j;
-	t_player	*current;
+	int	i;
+	int	j;
 
-	current = malloc(sizeof(t_player));
-	current = *player;
+	*player = malloc(sizeof(t_player));
+	if (!*player)
+		exit(1);
 	i = 0;
+	(*player)->pos_x = -1;
+	(*player)->pos_y = -1;
 	while ((*map)->display_map[i])
 	{
 		j = 0;
@@ -66,8 +68,8 @@ void	player_init(t_map **map, t_player **player)
 		{
 			if ((*map)->display_map[i][j] == 'P')
 			{
-				current->pos_x = j;
-				current->pos_y = i;
+				(*player)->pos_x = j;
+				(*player)->pos_y = i;
 			}
 			j++;
 		}
@@ -101,11 +103,13 @@ void	check_path(t_map **map, t_player **player)
 	int		i;
 	int		j;
 
-	if (!map || !*map)
+	if (!map || !*map || !player || !*player)
 		return ;
 	copy = copy_struct(map);
-	ft_flood_fill(&copy, (*player)->pos_x, (*player)->pos_y);
 	i = 0;
+	if (!copy || !copy->display_map[i])
+		return ;
+	ft_flood_fill(&copy, (*player)->pos_x, (*player)->pos_y);
 	while (copy->display_map[i])
 	{
 		j = 0;
@@ -119,4 +123,5 @@ void	check_path(t_map **map, t_player **player)
 		}
 		i++;
 	}
+	free_struct_map(copy);
 }

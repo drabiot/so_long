@@ -61,7 +61,8 @@ void	check_walls(t_map **map);
 void	player_init(t_map **map, t_player **player);
 void	ft_flood_fill(t_map **map, int x, int y);
 void	check_path(t_map **map, t_player **player);
-void	free_struct_map(t_map **map);
+void	free_struct_map(t_map *map);
+void	free_matrix(char **matrix);
 
 void	display(t_map **map, t_player **player);
 
