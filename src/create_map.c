@@ -22,10 +22,10 @@ static void	add_exit_pos(t_map **map)
 
 	current = *map;
 	i = 0;
-	while (current->display_map[i])
+	while (i < current->height)
 	{
 		j = 0;
-		while (current->display_map[i][j])
+		while (j < current->width)
 		{
 			if (current->display_map[i][j] == 'E')
 			{
@@ -38,19 +38,33 @@ static void	add_exit_pos(t_map **map)
 	}
 }
 
-t_map	*map_node_init(t_map **map, char *full_map, int height, int width)
+static void	check_null_line(char *full_map, char *arg)
+{
+	char	*check;
+	size_t	len;
+
+	if (!full_map)
+		error_check(NO_MAP_ERROR, arg);
+	len = ft_strlen(full_map);
+	check = ft_strnstr(full_map, "\n\n", len);
+	if (check)
+		error_check(MAP_ERROR, arg);
+}
+
+t_map	*map_node_init(t_map **map, char *full_map, int width, char *arg)
 {
 	t_map	*current;
 	char	**split_map;
 	int		i;
 
 	i = 0;
+	check_null_line(full_map, arg);
 	split_map = ft_split(full_map, '\n');
 	free(full_map);
 	while (split_map[i])
 	{
 		if ((int)ft_strlen(split_map[i]) != width)
-			error_check(SIZE_ERROR);
+			error_check(SIZE_ERROR, arg);
 		i++;
 	}
 	current = *map;
@@ -58,7 +72,7 @@ t_map	*map_node_init(t_map **map, char *full_map, int height, int width)
 	if (!current)
 		return (NULL);
 	current->width = width;
-	current->height = height;
+	current->height = i;
 	current->display_map = split_map;
 	add_exit_pos(&current);
 	return (current);
@@ -74,7 +88,7 @@ void	map_init(t_map **map, char *arg)
 
 	fd = open(arg, O_RDONLY);
 	if (fd == -1)
-		error_check(NO_MAP_ERROR);
+		error_check(NO_MAP_ERROR, arg);
 	line = get_next_line(fd);
 	height = 0;
 	full_map = NULL;
@@ -89,6 +103,6 @@ void	map_init(t_map **map, char *arg)
 		line = get_next_line(fd);
 		height++;
 	}
-	*map = map_node_init(map, full_map, height, width - 1);
-	check_map(map);
+	*map = map_node_init(map, full_map, width - 1, arg);
+	check_map(map, arg);
 }

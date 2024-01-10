@@ -21,7 +21,7 @@ void	free_struct_map(t_map *map)
 	i = 0;
 	if (!map)
 		return ;
-	while (map->display_map[i])
+	while (i < map->height)
 	{
 		free(map->display_map[i]);
 		i++;
@@ -46,24 +46,48 @@ void	free_matrix(char **matrix)
 	free(matrix);
 }
 
-void	extension_check(char *map)
+void	extension_check(char *map, char *arg)
 {
 	int	len;
 
 	len = ft_strlen(map);
 	if (len < 4)
 	{
-		error_check(EXTENSION_ERROR);
+		error_check(EXTENSION_ERROR, arg);
 		exit(1);
 	}
 	else if (len >= 4 && ft_strncmp(&map[len - 4], ".ber", 4))
 	{
-		error_check(EXTENSION_ERROR);
+		error_check(EXTENSION_ERROR, arg);
 		exit(1);
 	}
 }
 
-void	error_check(int error)
+int	check_nb(t_map *map, char c)
+{
+	int	nb;
+	int	i;
+	int	j;
+
+	if (!map)
+		return (0);
+	i = 0;
+	nb = 0;
+	while (i < map->height)
+	{
+		j = 0;
+		while (j < map->width)
+		{
+			if (map->display_map[i][j] == c)
+				nb++;
+			j++;
+		}
+		i++;
+	}
+	return (nb);
+}
+
+void	error_check(int error, char *arg)
 {
 	char	*error_message[14];
 
@@ -84,5 +108,7 @@ Colletible)";
 	error_message[MAP_ERROR] = "(The map's composed characters \
 isn't correct)";
 	ft_printf("Error\n%s\n", error_message[error]);
+	if (arg)
+		free(arg);
 	exit (1);
 }

@@ -12,92 +12,61 @@
 
 #include "../include/so_long.h"
 
-static void	check_player(t_map **map)
+static void	check_player(t_map **map, char *arg)
 {
 	int		nb_player;
-	int		i;
-	int		j;
 	t_map	*current;
 
 	if (!map || !*map)
 		return ;
 	current = *map;
-	nb_player = 0;
-	i = 0;
-	while (current->display_map[i])
+	nb_player = check_nb(current, 'P');
+	if (nb_player != 1)
 	{
-		j = 0;
-		while (current->display_map[i][j])
-		{
-			if (current->display_map[i][j] == 'P')
-				nb_player++;
-			j++;
-		}
-		i++;
+		free_struct_map(current);
+		if (nb_player < 1)
+			error_check(FEW_PLAYER_ERROR, arg);
+		else if (nb_player > 1)
+			error_check(MANY_PLAYER_ERROR, arg);
 	}
-	if (nb_player < 1)
-		error_check(FEW_PLAYER_ERROR);
-	else if (nb_player > 1)
-		error_check(MANY_PLAYER_ERROR);
 }
 
-static void	check_exit(t_map **map)
+static void	check_exit(t_map **map, char *arg)
 {
 	int		nb_exit;
-	int		i;
-	int		j;
 	t_map	*current;
 
 	if (!map || !*map)
 		return ;
 	current = *map;
-	nb_exit = 0;
-	i = 0;
-	while (current->display_map[i])
+	nb_exit = check_nb(current, 'E');
+	if (nb_exit != 1)
 	{
-		j = 0;
-		while (current->display_map[i][j])
-		{
-			if (current->display_map[i][j] == 'E')
-				nb_exit++;
-			j++;
-		}
-		i++;
+		free_struct_map(current);
+		if (nb_exit < 1)
+			error_check(FEW_EXIT_ERROR, arg);
+		else if (nb_exit > 1)
+			error_check(MANY_EXIT_ERROR, arg);
 	}
-	if (nb_exit < 1)
-		error_check(FEW_EXIT_ERROR);
-	else if (nb_exit > 1)
-		error_check(MANY_EXIT_ERROR);
 }
 
-static void	check_collectible(t_map **map)
+static void	check_collectible(t_map **map, char *arg)
 {
 	int		nb_collectible;
-	int		i;
-	int		j;
 	t_map	*current;
 
 	if (!map || !*map)
 		return ;
 	current = *map;
-	nb_collectible = 0;
-	i = 0;
-	while (current->display_map[i])
-	{
-		j = 0;
-		while (current->display_map[i][j])
-		{
-			if (current->display_map[i][j] == 'C')
-				nb_collectible++;
-			j++;
-		}
-		i++;
-	}
+	nb_collectible = check_nb(current, 'C');
 	if (nb_collectible < 1)
-		error_check(FEW_COLLECTIBLE_ERROR);
+	{
+		free_struct_map(current);
+		error_check(FEW_COLLECTIBLE_ERROR, arg);
+	}
 }
 
-static void	check_characters(t_map **map)
+static void	check_characters(t_map **map, char *arg)
 {
 	int		i;
 	int		j;
@@ -108,26 +77,29 @@ static void	check_characters(t_map **map)
 		return ;
 	current = *map;
 	i = 0;
-	while (current->display_map[i])
+	while (i < current->height)
 	{
 		j = 0;
-		while (current->display_map[i][j])
+		while (j < current->width)
 		{
 			character = current->display_map[i][j];
 			if (!(character == '0' || character == '1' || character == 'C'
 					|| character == 'E' || character == 'P'))
-				error_check(MAP_ERROR);
+			{
+				free_struct_map(current);
+				error_check(MAP_ERROR, arg);
+			}
 			j++;
 		}
 		i++;
 	}
 }
 
-void	check_map(t_map **map)
+void	check_map(t_map **map, char *arg)
 {
-	check_player(map);
-	check_exit(map);
-	check_collectible(map);
-	check_walls(map);
-	check_characters(map);
+	check_player(map, arg);
+	check_exit(map, arg);
+	check_collectible(map, arg);
+	check_walls(map, arg);
+	check_characters(map, arg);
 }

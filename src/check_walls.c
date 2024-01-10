@@ -12,7 +12,7 @@
 
 #include "../include/so_long.h"
 
-static void	check_up(t_map **map)
+static void	check_up(t_map **map, char *arg)
 {
 	int		i;
 	t_map	*current;
@@ -24,12 +24,12 @@ static void	check_up(t_map **map)
 	while (current->display_map[0][i])
 	{
 		if (current->display_map[0][i] != '1')
-			error_check(WALLS_ERROR);
+			error_check(WALLS_ERROR, arg);
 		i++;
 	}
 }
 
-static void	check_down(t_map **map)
+static void	check_down(t_map **map, char *arg)
 {
 	int		i;
 	t_map	*current;
@@ -41,12 +41,12 @@ static void	check_down(t_map **map)
 	while (current->display_map[current->height - 1][i])
 	{
 		if (current->display_map[current->height - 1][i] != '1')
-			error_check(WALLS_ERROR);
+			error_check(WALLS_ERROR, arg);
 		i++;
 	}
 }
 
-static void	check_right(t_map **map)
+static void	check_right(t_map **map, char *arg)
 {
 	int		i;
 	t_map	*current;
@@ -59,12 +59,12 @@ static void	check_right(t_map **map)
 		&& current->display_map[i][current->width - 1])
 	{
 		if (current->display_map[i][current->width - 1] != '1')
-			error_check(WALLS_ERROR);
+			error_check(WALLS_ERROR, arg);
 		i++;
 	}
 }
 
-static void	check_left(t_map **map)
+static void	check_left(t_map **map, char *arg)
 {
 	int		i;
 	t_map	*current;
@@ -76,15 +76,15 @@ static void	check_left(t_map **map)
 	while (i < current->height && current->display_map[i][0])
 	{
 		if (current->display_map[i][0] != '1')
-			error_check(WALLS_ERROR);
+			error_check(WALLS_ERROR, arg);
 		i++;
 	}
 }
 
-void	check_walls(t_map **map)
+void	check_walls(t_map **map, char *arg)
 {
-	check_up(map);
-	check_down(map);
-	check_right(map);
-	check_left(map);
+	check_up(map, arg);
+	check_down(map, arg);
+	check_right(map, arg);
+	check_left(map, arg);
 }

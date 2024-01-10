@@ -61,10 +61,10 @@ void	player_init(t_map **map, t_player **player)
 	i = 0;
 	(*player)->pos_x = -1;
 	(*player)->pos_y = -1;
-	while ((*map)->display_map[i])
+	while (i < (*map)->height)
 	{
 		j = 0;
-		while ((*map)->display_map[i][j])
+		while (j < (*map)->width)
 		{
 			if ((*map)->display_map[i][j] == 'P')
 			{
@@ -97,7 +97,7 @@ void	ft_flood_fill(t_map **map, int x, int y)
 		return ;
 }
 
-void	check_path(t_map **map, t_player **player)
+void	check_path(t_map **map, t_player **player, char *arg)
 {
 	t_map	*copy;
 	int		i;
@@ -110,15 +110,15 @@ void	check_path(t_map **map, t_player **player)
 	if (!copy || !copy->display_map[i])
 		return ;
 	ft_flood_fill(&copy, (*player)->pos_x, (*player)->pos_y);
-	while (copy->display_map[i])
+	while (i < copy->height)
 	{
 		j = 0;
-		while (copy->display_map[i][j])
+		while (j < copy->width)
 		{
 			if (copy->display_map[i][j] == 'E')
-				error_check(PATH_EXIT_ERROR);
+				error_check(PATH_EXIT_ERROR, arg);
 			else if (copy->display_map[i][j] == 'C')
-				error_check(PATH_COLLECTIBLE_ERROR);
+				error_check(PATH_COLLECTIBLE_ERROR, arg);
 			j++;
 		}
 		i++;

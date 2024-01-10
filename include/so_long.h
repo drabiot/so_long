@@ -52,15 +52,16 @@ typedef struct s_player
 	int	pos_y;
 }		t_player;
 
-void	error_check(int error);
-void	extension_check(char *map);
+void	error_check(int error, char *arg);
+void	extension_check(char *map, char *arg);
 void	map_init(t_map **map, char *arg);
-t_map	*map_node_init(t_map **map, char *full_map, int height, int width);
-void	check_map(t_map **map);
-void	check_walls(t_map **map);
+t_map	*map_node_init(t_map **map, char *full_map, int width, char *arg);
+void	check_map(t_map **map, char *arg);
+void	check_walls(t_map **map, char *arg);
+int		check_nb(t_map *map, char c);
 void	player_init(t_map **map, t_player **player);
 void	ft_flood_fill(t_map **map, int x, int y);
-void	check_path(t_map **map, t_player **player);
+void	check_path(t_map **map, t_player **player, char *arg);
 void	free_struct_map(t_map *map);
 void	free_matrix(char **matrix);
 
