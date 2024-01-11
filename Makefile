@@ -57,6 +57,7 @@ SRCS		=		main.c \
 					check_map.c \
 					check_walls.c \
 					check_path.c \
+					other_init.c \
 					display.c 
 
 OBJS		=		$(SRCS:.c=.o)

@@ -48,12 +48,14 @@ static void	check_null_line(char *full_map, char *arg)
 	len = ft_strlen(full_map);
 	check = ft_strnstr(full_map, "\n\n", len);
 	if (check)
+	{
+		free(full_map);
 		error_check(MAP_ERROR, arg);
+	}
 }
 
 t_map	*map_node_init(t_map **map, char *full_map, int width, char *arg)
 {
-	t_map	*current;
 	char	**split_map;
 	int		i;
 
@@ -64,18 +66,20 @@ t_map	*map_node_init(t_map **map, char *full_map, int width, char *arg)
 	while (split_map[i])
 	{
 		if ((int)ft_strlen(split_map[i]) != width)
+		{
+			free_matrix(split_map);
 			error_check(SIZE_ERROR, arg);
+		}
 		i++;
 	}
-	current = *map;
-	current = malloc(sizeof(t_map));
-	if (!current)
+	*map = malloc(sizeof(t_map));
+	if (!*map || !map)
 		return (NULL);
-	current->width = width;
-	current->height = i;
-	current->display_map = split_map;
-	add_exit_pos(&current);
-	return (current);
+	(*map)->width = width;
+	(*map)->height = i;
+	(*map)->display_map = split_map;
+	add_exit_pos(map);
+	return (*map);
 }
 
 void	map_init(t_map **map, char *arg)

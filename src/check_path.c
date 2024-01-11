@@ -50,33 +50,6 @@ static t_map	*copy_struct(t_map **map)
 	return (copy);
 }
 
-void	player_init(t_map **map, t_player **player)
-{
-	int	i;
-	int	j;
-
-	*player = malloc(sizeof(t_player));
-	if (!*player)
-		exit(1);
-	i = 0;
-	(*player)->pos_x = -1;
-	(*player)->pos_y = -1;
-	while (i < (*map)->height)
-	{
-		j = 0;
-		while (j < (*map)->width)
-		{
-			if ((*map)->display_map[i][j] == 'P')
-			{
-				(*player)->pos_x = j;
-				(*player)->pos_y = i;
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
 void	ft_flood_fill(t_map **map, int x, int y)
 {
 	t_map	*current;
@@ -97,31 +70,51 @@ void	ft_flood_fill(t_map **map, int x, int y)
 		return ;
 }
 
-void	check_path(t_map **map, t_player **player, char *arg)
+static int	check_flood_fill(t_map *copy)
 {
-	t_map	*copy;
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
-	if (!map || !*map || !player || !*player)
-		return ;
-	copy = copy_struct(map);
 	i = 0;
-	if (!copy || !copy->display_map[i])
-		return ;
-	ft_flood_fill(&copy, (*player)->pos_x, (*player)->pos_y);
+	if (!copy)
+		return (0);
 	while (i < copy->height)
 	{
 		j = 0;
 		while (j < copy->width)
 		{
 			if (copy->display_map[i][j] == 'E')
-				error_check(PATH_EXIT_ERROR, arg);
+				return (1);
 			else if (copy->display_map[i][j] == 'C')
-				error_check(PATH_COLLECTIBLE_ERROR, arg);
+				return (2);
 			j++;
 		}
 		i++;
 	}
 	free_struct_map(copy);
+	return (0);
+}
+
+void	check_path(t_map **map, t_player **player, char *arg)
+{
+	t_map	*copy;
+	int		check;
+
+	if (!map || !*map || !player || !*player)
+		return ;
+	copy = copy_struct(map);
+	if (!copy || !copy->display_map)
+		return ;
+	ft_flood_fill(&copy, (*player)->pos_x, (*player)->pos_y);
+	check = check_flood_fill(copy);
+	if (check != 0)
+	{
+		free(*player);
+		free_struct_map(copy);
+		free_struct_map(*map);
+		if (check == 1)
+			error_check(PATH_EXIT_ERROR, arg);
+		else if (check == 2)
+			error_check(PATH_COLLECTIBLE_ERROR, arg);
+	}
 }

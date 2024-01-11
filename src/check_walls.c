@@ -24,7 +24,10 @@ static void	check_up(t_map **map, char *arg)
 	while (current->display_map[0][i])
 	{
 		if (current->display_map[0][i] != '1')
+		{
+			free_struct_map(*map);
 			error_check(WALLS_ERROR, arg);
+		}
 		i++;
 	}
 }
@@ -41,7 +44,10 @@ static void	check_down(t_map **map, char *arg)
 	while (current->display_map[current->height - 1][i])
 	{
 		if (current->display_map[current->height - 1][i] != '1')
+		{
+			free_struct_map(*map);
 			error_check(WALLS_ERROR, arg);
+		}
 		i++;
 	}
 }
@@ -59,7 +65,10 @@ static void	check_right(t_map **map, char *arg)
 		&& current->display_map[i][current->width - 1])
 	{
 		if (current->display_map[i][current->width - 1] != '1')
+		{
+			free_struct_map(*map);
 			error_check(WALLS_ERROR, arg);
+		}
 		i++;
 	}
 }
@@ -76,7 +85,10 @@ static void	check_left(t_map **map, char *arg)
 	while (i < current->height && current->display_map[i][0])
 	{
 		if (current->display_map[i][0] != '1')
+		{
+			free_struct_map(*map);
 			error_check(WALLS_ERROR, arg);
+		}
 		i++;
 	}
 }
