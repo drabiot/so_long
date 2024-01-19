@@ -14,6 +14,7 @@
 # define SO_LONG_H
 
 # include "../mlx42/include/MLX42_Int.h"
+# include <stdlib.h>
 
 # ifndef SPRITE_PIXEL
 #  define SPRITE_PIXEL 64
@@ -37,14 +38,35 @@ enum	e_error
 	MAP_ERROR,
 } ;
 
+typedef struct s_textures
+{
+	mlx_texture_t	*floor[3];
+	mlx_texture_t	*player;
+	mlx_texture_t	*wall;
+	mlx_texture_t	*collectible;
+	mlx_texture_t	*exit[2];
+}			t_textures;
+
+typedef struct s_images
+{
+	mlx_image_t	*floor[3];
+	mlx_image_t	*player;
+	mlx_image_t	*wall;
+	mlx_image_t	*collectible;
+	mlx_image_t	*exit[2];
+}			t_images;
+
 typedef struct s_map
 {
-	int		height;
-	int		width;
-	char	**display_map;
-	int		pos_x_exit;
-	int		pos_y_exit;
-}			t_map;
+	int			height;
+	int			width;
+	char		**display_map;
+	int			pos_x_exit;
+	int			pos_y_exit;
+	mlx_t		*mlx;
+	t_textures	*tx;
+	t_images	*img;
+}				t_map;
 
 typedef struct s_player
 {
@@ -64,6 +86,14 @@ void	ft_flood_fill(t_map **map, int x, int y);
 void	check_path(t_map **map, t_player **player, char *arg);
 void	free_struct_map(t_map *map);
 void	free_matrix(char **matrix);
+
+void	display_map(t_map *map);
+
+void	init_png(t_map *map);
+void	game_init(t_map *map, t_player *player);
+
+void	ft_srand(unsigned int seed);
+int		ft_rand(int a, int b);
 
 void	display(t_map **map, t_player **player);
 

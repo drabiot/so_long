@@ -6,27 +6,84 @@
 /*   By: tchartie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 19:28:14 by tchartie          #+#    #+#             */
-/*   Updated: 2024/01/03 19:34:57 by tchartie         ###   ########.fr       */
+/*   Updated: 2024/01/18 16:20:10 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-#include "../include/libft.h"
-#include <stdio.h>
 
-void	display(t_map **map, t_player **player)
+static void	display_floor(t_map *map, int i, int j)
 {
+	int	rand;
+	int	x;
+	int	y;
+	
+	rand = ft_rand(0,2);
+	x = j * SPRITE_PIXEL;
+	y = i * SPRITE_PIXEL;
+	if (rand == 0)
+		mlx_image_to_window(map->mlx, map->img->floor[0], x, y);
+	else if (rand == 1)
+		mlx_image_to_window(map->mlx, map->img->floor[1], x, y);
+	else if (rand == 2)
+		mlx_image_to_window(map->mlx, map->img->floor[2], x, y);
+}
+
+static void	display_wall(t_map *map, int i, int j)
+{
+	int	x;
+	int	y;
+	
+	x = j * SPRITE_PIXEL;
+	y = i * SPRITE_PIXEL;
+	mlx_image_to_window(map->mlx, map->img->wall, x, y);
+}
+
+static void	display_exit(t_map *map, int i, int j)
+{
+	int	x;
+	int	y;
+	
+	x = j * SPRITE_PIXEL;
+	y = i * SPRITE_PIXEL;
+	mlx_image_to_window(map->mlx, map->img->exit[0], x, y);
+}
+
+static void	display_people(t_map *map, int i, int j)
+{
+	int	x;
+	int	y;
+	
+	x = j * SPRITE_PIXEL;
+	y = i * SPRITE_PIXEL;
+	if (map->display_map[i][j] == 'P')
+		mlx_image_to_window(map->mlx, map->img->player, x, y);
+	else if (map->display_map[i][j] == 'C')
+		mlx_image_to_window(map->mlx, map->img->collectible, x, y);
+}
+
+void	display_map(t_map *map)
+{
+	int	i;
 	int	j;
 
-	printf("MAP:\nHeight : %d\n", (*map)->height);
-	printf("Width : %d\n", (*map)->width);
-	printf("Map :\n");
-	j = 0;
-	while ((*map)->display_map[j])
+	if (!map)
+		return ;
+	i = 0;
+	while (i < map->height)
 	{
-		printf("%s\n", (*map)->display_map[j]);
-		j++;
+		j = 0;
+		while (j < map->width)
+		{
+			display_floor(map, i, j);
+			if (map->display_map[i][j] == '1')
+				display_wall(map, i, j);
+			else if (map->display_map[i][j] == 'E')
+				display_exit(map, i, j);
+			else
+				display_people(map, i, j);
+			j++;
+		}
+		i++;
 	}
-	printf("PLAYER:\nPos_x : %d\nPos_y : %d\n", (*player)->pos_x, (*player)->pos_y);
-	printf("EXIT:\nPos_x : %d\nPos_y : %d\n", (*map)->pos_x_exit, (*map)->pos_y_exit);
 }

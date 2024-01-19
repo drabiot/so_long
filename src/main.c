@@ -12,6 +12,7 @@
 
 #include "../include/so_long.h"
 #include "../include/libft.h"
+#include "../include/ft_printf.h"
 
 static char	*create_arg(char *argv)
 {
@@ -43,9 +44,7 @@ int	main(int argc, char **argv)
 		map_init(&map, arg);
 		player_init(&map, &player);
 		check_path(&map, &player, arg);
-		display(&map, &player);
-		free(arg);
-		free(player);
-		free_struct_map(map);
+		game_init(map, player);
+		//free()
 	}
 }

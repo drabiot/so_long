@@ -54,6 +54,18 @@ static void	check_null_line(char *full_map, char *arg)
 	}
 }
 
+static void	init_value (t_map *map, int height, int width, char **split_map)
+{
+	map->width = width;
+	map->height = height;
+	map->display_map = split_map;
+	map->pos_x_exit = 0;
+	map->pos_y_exit = 0;
+	map->mlx = NULL;
+	map->tx = NULL;
+	map->img = NULL;
+}
+
 t_map	*map_node_init(t_map **map, char *full_map, int width, char *arg)
 {
 	char	**split_map;
@@ -75,9 +87,7 @@ t_map	*map_node_init(t_map **map, char *full_map, int width, char *arg)
 	*map = malloc(sizeof(t_map));
 	if (!*map || !map)
 		return (NULL);
-	(*map)->width = width;
-	(*map)->height = i;
-	(*map)->display_map = split_map;
+	init_value(*map, i, width, split_map);
 	add_exit_pos(map);
 	return (*map);
 }
