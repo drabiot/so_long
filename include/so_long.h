@@ -42,8 +42,9 @@ typedef struct s_textures
 {
 	mlx_texture_t	*floor[3];
 	mlx_texture_t	*player;
-	mlx_texture_t	*wall;
-	mlx_texture_t	*collectible;
+	mlx_texture_t	*wall[5];
+	mlx_texture_t	*corner[4];
+	mlx_texture_t	*collectible[2];
 	mlx_texture_t	*exit[2];
 }			t_textures;
 
@@ -51,8 +52,9 @@ typedef struct s_images
 {
 	mlx_image_t	*floor[3];
 	mlx_image_t	*player;
-	mlx_image_t	*wall;
-	mlx_image_t	*collectible;
+	mlx_image_t	*wall[5];
+	mlx_image_t	*corner[4];
+	mlx_image_t	*collectible[2];
 	mlx_image_t	*exit[2];
 }			t_images;
 
@@ -73,6 +75,8 @@ typedef struct s_player
 	int	pos_x;
 	int	pos_y;
 }		t_player;
+
+typedef void (*t_loop_hook_f)(void *);
 
 void	error_check(int error, char *arg);
 void	extension_check(char *map, char *arg);
@@ -96,6 +100,7 @@ void	ft_srand(unsigned int seed);
 int		ft_rand(int a, int b);
 
 void	display(t_map **map, t_player **player);
+void	hook(t_map *map);
 
 /* ********************************************************** */
 /*                                                            */

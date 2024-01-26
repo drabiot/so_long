@@ -36,7 +36,24 @@ static void	display_wall(t_map *map, int i, int j)
 	
 	x = j * SPRITE_PIXEL;
 	y = i * SPRITE_PIXEL;
-	mlx_image_to_window(map->mlx, map->img->wall, x, y);
+	if (i == 0 && j == 0)
+		mlx_image_to_window(map->mlx, map->img->corner[0], x, y);
+	else if (i == 0 && j == (map->width - 1))
+		mlx_image_to_window(map->mlx, map->img->corner[1], x, y);
+	else if (i == (map->height - 1) && j == (map->width - 1))
+		mlx_image_to_window(map->mlx, map->img->corner[2], x, y);
+	else if (i == (map->height - 1) && j == 0)
+		mlx_image_to_window(map->mlx, map->img->corner[3], x, y);
+	else if (i == 0)
+		mlx_image_to_window(map->mlx, map->img->wall[0], x, y);
+	else if (i == (map->height - 1))
+		mlx_image_to_window(map->mlx, map->img->wall[2], x, y);
+	else if (j == (map->width - 1))
+		mlx_image_to_window(map->mlx, map->img->wall[1], x, y);
+	else if (j == 0)
+		mlx_image_to_window(map->mlx, map->img->wall[3], x, y);
+	else
+		mlx_image_to_window(map->mlx, map->img->wall[4], x, y);
 }
 
 static void	display_exit(t_map *map, int i, int j)
@@ -59,7 +76,7 @@ static void	display_people(t_map *map, int i, int j)
 	if (map->display_map[i][j] == 'P')
 		mlx_image_to_window(map->mlx, map->img->player, x, y);
 	else if (map->display_map[i][j] == 'C')
-		mlx_image_to_window(map->mlx, map->img->collectible, x, y);
+		mlx_image_to_window(map->mlx, map->img->collectible[0], x, y);
 }
 
 void	display_map(t_map *map)
