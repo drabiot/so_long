@@ -42,8 +42,9 @@ typedef struct s_textures
 {
 	mlx_texture_t	*floor[3];
 	mlx_texture_t	*player;
-	mlx_texture_t	*wall[5];
+	mlx_texture_t	*wall[4];
 	mlx_texture_t	*corner[4];
+	mlx_texture_t	*obstacle[1];
 	mlx_texture_t	*collectible[2];
 	mlx_texture_t	*exit[2];
 }			t_textures;
@@ -52,23 +53,24 @@ typedef struct s_images
 {
 	mlx_image_t	*floor[3];
 	mlx_image_t	*player;
-	mlx_image_t	*wall[5];
+	mlx_image_t	*wall[4];
 	mlx_image_t	*corner[4];
+	mlx_image_t	*obstacle[1];
 	mlx_image_t	*collectible[2];
 	mlx_image_t	*exit[2];
 }			t_images;
 
 typedef struct s_map
 {
-	int			height;
-	int			width;
-	char		**display_map;
-	int			pos_x_exit;
-	int			pos_y_exit;
-	mlx_t		*mlx;
-	t_textures	*tx;
-	t_images	*img;
-}				t_map;
+	int				height;
+	int				width;
+	char			**display_map;
+	int				pos_x_exit;
+	int				pos_y_exit;
+	mlx_t			*mlx;
+	t_textures		*tx;
+	t_images		*img;
+}					t_map;
 
 typedef struct s_player
 {

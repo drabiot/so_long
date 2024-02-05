@@ -53,7 +53,7 @@ static void	display_wall(t_map *map, int i, int j)
 	else if (j == 0)
 		mlx_image_to_window(map->mlx, map->img->wall[3], x, y);
 	else
-		mlx_image_to_window(map->mlx, map->img->wall[4], x, y);
+		mlx_image_to_window(map->mlx, map->img->obstacle[0], x, y);
 }
 
 static void	display_exit(t_map *map, int i, int j)
@@ -76,7 +76,11 @@ static void	display_people(t_map *map, int i, int j)
 	if (map->display_map[i][j] == 'P')
 		mlx_image_to_window(map->mlx, map->img->player, x, y);
 	else if (map->display_map[i][j] == 'C')
+	{
 		mlx_image_to_window(map->mlx, map->img->collectible[0], x, y);
+		mlx_image_to_window(map->mlx, map->img->collectible[1], x, y);
+		map->img->collectible[1]->instances[map->img->collectible[1]->count].enabled = 0;
+	}
 }
 
 void	display_map(t_map *map)

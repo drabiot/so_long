@@ -57,11 +57,13 @@ SRCS		=		main.c \
 					check_map.c \
 					check_walls.c \
 					check_path.c \
-					other_init.c \
+					player_init.c \
+					collectible_init.c \
 					init_images.c \
 					game_init.c \
 					ft_random.c \
-					display.c 
+					display.c \
+					key_press.c
 
 OBJS		=		$(SRCS:.c=.o)
 

@@ -26,11 +26,11 @@ static void png_to_texture(t_map *map)
 	map->tx->wall[1] = mlx_load_png("./textures/wall_right.png");
 	map->tx->wall[2] = mlx_load_png("./textures/wall_down.png");
 	map->tx->wall[3] = mlx_load_png("./textures/wall_left.png");
-	map->tx->wall[4] = mlx_load_png("./textures/wall.png");
 	map->tx->corner[0] = mlx_load_png("./textures/corner_ul.png");
 	map->tx->corner[1] = mlx_load_png("./textures/corner_ur.png");
 	map->tx->corner[2] = mlx_load_png("./textures/corner_dr.png");
 	map->tx->corner[3] = mlx_load_png("./textures/corner_dl.png");
+	map->tx->obstacle[0] = mlx_load_png("./textures/pot.png");
 	map->tx->collectible[0] = mlx_load_png("./textures/collectible.png");
 	map->tx->collectible[1] = mlx_load_png("./textures/collectible1.png");
 	map->tx->exit[0] = mlx_load_png("./textures/close_exit.png");
@@ -50,11 +50,11 @@ static void	texture_to_image(t_map *map)
 	map->img->wall[1] = mlx_texture_to_image(map->mlx, map->tx->wall[1]);
 	map->img->wall[2] = mlx_texture_to_image(map->mlx, map->tx->wall[2]);
 	map->img->wall[3] = mlx_texture_to_image(map->mlx, map->tx->wall[3]);
-	map->img->wall[4] = mlx_texture_to_image(map->mlx, map->tx->wall[4]);
 	map->img->corner[0] = mlx_texture_to_image(map->mlx, map->tx->corner[0]);
 	map->img->corner[1] = mlx_texture_to_image(map->mlx, map->tx->corner[1]);
 	map->img->corner[2] = mlx_texture_to_image(map->mlx, map->tx->corner[2]);
 	map->img->corner[3] = mlx_texture_to_image(map->mlx, map->tx->corner[3]);
+	map->img->obstacle[0] = mlx_texture_to_image(map->mlx, map->tx->obstacle[0]);
 	map->img->collectible[0] = mlx_texture_to_image(map->mlx, map->tx->collectible[0]);
 	map->img->collectible[1] = mlx_texture_to_image(map->mlx, map->tx->collectible[1]);
 	map->img->exit[0] = mlx_texture_to_image(map->mlx, map->tx->exit[0]);

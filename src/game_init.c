@@ -16,14 +16,29 @@ void	hook(t_map *map)
 {
 	static int ticks = 0;
 	static int frame = 1;
-	static mlx_image_t *r = 0;
+	//static mlx_image_t *r = 0;
 	ticks++;
-	if (ticks % 20 == 0) {
+	/*if (ticks % 20 == 0) {
 		if(frame > 1) frame = 0;
 		mlx_image_t *tmp = r;
 		r = mlx_texture_to_image(map->mlx, map->tx->collectible[frame]);
 		if(tmp) mlx_delete_image(map->mlx, tmp);
 		mlx_image_to_window(map->mlx, r, 0, 0);
+		frame++;
+	}
+	*/
+	if (ticks % 20 == 0)
+	{
+		size_t i;
+		
+		i = 0;
+		if(frame > 1) frame = 0;
+		while (i < map->img->collectible[0]->count)
+		{
+			map->img->collectible[frame]->instances[i].enabled = 0;
+			map->img->collectible[(frame + 1) % 2]->instances[i].enabled = 1;
+			i++;
+		}
 		frame++;
 	}
 }
@@ -37,6 +52,7 @@ void	game_init(t_map *map, t_player *player)
 	ft_srand(map->height * map->width);
 	display_map(map);
 	mlx_loop_hook(map->mlx, (t_loop_hook_f)hook, (void *)map);
+	//mlx_key_hook(map->mlx, key_press, player);
 	mlx_loop(map->mlx);
 	mlx_close_window(map->mlx);
 	mlx_terminate(map->mlx);
