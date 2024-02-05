@@ -50,9 +50,9 @@ void	game_init(t_map *map, t_player *player)
 		"so_long", false);
 	init_png(map);
 	ft_srand(map->height * map->width);
-	display_map(map);
+	display_map(map, player);
 	mlx_loop_hook(map->mlx, (t_loop_hook_f)hook, (void *)map);
-	//mlx_key_hook(map->mlx, key_press, player);
+	mlx_key_hook(map->mlx, (void *)key_press, map);
 	mlx_loop(map->mlx);
 	mlx_close_window(map->mlx);
 	mlx_terminate(map->mlx);

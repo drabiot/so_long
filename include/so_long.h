@@ -93,7 +93,7 @@ void	check_path(t_map **map, t_player **player, char *arg);
 void	free_struct_map(t_map *map);
 void	free_matrix(char **matrix);
 
-void	display_map(t_map *map);
+void	display_map(t_map *map, t_player *player);
 
 void	init_png(t_map *map);
 void	game_init(t_map *map, t_player *player);
@@ -103,6 +103,8 @@ int		ft_rand(int a, int b);
 
 void	display(t_map **map, t_player **player);
 void	hook(t_map *map);
+
+void	key_press(mlx_key_data_t keydata, t_map *map);
 
 /* ********************************************************** */
 /*                                                            */

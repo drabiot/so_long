@@ -66,16 +66,14 @@ static void	display_exit(t_map *map, int i, int j)
 	mlx_image_to_window(map->mlx, map->img->exit[0], x, y);
 }
 
-static void	display_people(t_map *map, int i, int j)
+static void	display_coll(t_map *map, int i, int j)
 {
 	int	x;
 	int	y;
 	
 	x = j * SPRITE_PIXEL;
 	y = i * SPRITE_PIXEL;
-	if (map->display_map[i][j] == 'P')
-		mlx_image_to_window(map->mlx, map->img->player, x, y);
-	else if (map->display_map[i][j] == 'C')
+	if (map->display_map[i][j] == 'C')
 	{
 		mlx_image_to_window(map->mlx, map->img->collectible[0], x, y);
 		mlx_image_to_window(map->mlx, map->img->collectible[1], x, y);
@@ -83,7 +81,7 @@ static void	display_people(t_map *map, int i, int j)
 	}
 }
 
-void	display_map(t_map *map)
+void	display_map(t_map *map, t_player *player)
 {
 	int	i;
 	int	j;
@@ -102,9 +100,10 @@ void	display_map(t_map *map)
 			else if (map->display_map[i][j] == 'E')
 				display_exit(map, i, j);
 			else
-				display_people(map, i, j);
+				display_coll(map, i, j);
 			j++;
 		}
 		i++;
 	}
+	mlx_image_to_window(map->mlx, map->img->player, player->pos_x * SPRITE_PIXEL, player->pos_y * SPRITE_PIXEL);
 }
