@@ -13,6 +13,16 @@
 #include "../include/so_long.h"
 #include "../include/ft_printf.h"
 
+static void enter_trapdoor(t_map *map)
+{
+	if (map->display_map[map->player->pos_y][map->player->pos_x] == 'E'
+		&& map->img->exit[1]->instances[0].enabled == 1)
+	{
+		ft_printf("You eat all the Cheese!");
+		mlx_close_window(map->mlx);
+	}
+}
+
 static void	player_grab_collectible(t_map *map)
 {
 	int	i;
@@ -76,4 +86,5 @@ void	key_press(mlx_key_data_t keydata, t_map *map)
 	else if ((keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT) 
 		&& keydata.action == MLX_PRESS)
 		move_player(map, SPRITE_PIXEL, 0);
+	enter_trapdoor(map);
 }

@@ -16,17 +16,8 @@ void	hook(t_map *map)
 {
 	static int ticks = 0;
 	static int frame = 1;
-	//static mlx_image_t *r = 0;
+
 	ticks++;
-	/*if (ticks % 20 == 0) {
-		if(frame > 1) frame = 0;
-		mlx_image_t *tmp = r;
-		r = mlx_texture_to_image(map->mlx, map->tx->collectible[frame]);
-		if(tmp) mlx_delete_image(map->mlx, tmp);
-		mlx_image_to_window(map->mlx, r, 0, 0);
-		frame++;
-	}
-	*/
 	if (ticks % 20 == 0)
 	{
 		size_t i;
