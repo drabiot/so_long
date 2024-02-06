@@ -12,7 +12,7 @@
 
 #include "../include/so_long.h"
 
-static void	display_floor(t_map *map, int i, int j)
+void	display_floor(t_map *map, int i, int j)
 {
 	int	rand;
 	int	x;
@@ -64,6 +64,8 @@ static void	display_exit(t_map *map, int i, int j)
 	x = j * SPRITE_PIXEL;
 	y = i * SPRITE_PIXEL;
 	mlx_image_to_window(map->mlx, map->img->exit[0], x, y);
+	mlx_image_to_window(map->mlx, map->img->exit[1], x, y);
+	map->img->exit[1]->instances[0].enabled = 0;
 }
 
 static void	display_coll(t_map *map, int i, int j)

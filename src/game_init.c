@@ -35,8 +35,12 @@ void	hook(t_map *map)
 		if(frame > 1) frame = 0;
 		while (i < map->img->collectible[0]->count)
 		{
-			map->img->collectible[frame]->instances[i].enabled = 0;
-			map->img->collectible[(frame + 1) % 2]->instances[i].enabled = 1;
+			if (!(map->img->collectible[0]->instances[i].enabled == 0
+				&& map->img->collectible[1]->instances[i].enabled == 0))
+			{
+				map->img->collectible[frame]->instances[i].enabled = 0;
+				map->img->collectible[(frame + 1) % 2]->instances[i].enabled = 1;
+			}
 			i++;
 		}
 		frame++;

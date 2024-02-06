@@ -11,11 +11,53 @@
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+#include "../include/ft_printf.h"
+
+static void	player_grab_collectible(t_map *map)
+{
+	int	i;
+	int	x;
+	int	y;
+	
+	i = 0;
+	x = map->player->pos_x * SPRITE_PIXEL;
+	y = map->player->pos_y * SPRITE_PIXEL;
+	if (map->display_map[map->player->pos_y][map->player->pos_x] == 'C')
+	{
+		map->player->coll++;
+		map->display_map[map->player->pos_y][map->player->pos_x] = 'c';
+		while ((size_t)i < map->img->collectible[0]->count
+			&& !(map->img->collectible[0]->instances[i].y == y
+			&& map->img->collectible[0]->instances[i].x == x))
+			i++;
+		map->img->collectible[0]->instances[i].enabled = 0;
+		map->img->collectible[1]->instances[i].enabled = 0;
+	}
+	if (map->player->coll == map->tot_coll)
+	{
+		map->img->exit[0]->instances[0].enabled = 0;
+		map->img->exit[1]->instances[0].enabled = 1;
+	}
+}
 
 static void	move_player(t_map *map, int new_x, int new_y)
 {
-	map->img->player->instances[0].x += new_x;
-	map->img->player->instances[0].y += new_y;
+	static int	nb_move = 0;
+	int			new_x_player;
+	int			new_y_player;
+
+	new_x_player = map->player->pos_x + new_x / SPRITE_PIXEL;
+	new_y_player = map->player->pos_y + new_y / SPRITE_PIXEL;
+	if (!(map->display_map[new_y_player][new_x_player] == '1'))
+	{
+		map->img->player->instances[0].x += new_x;
+		map->img->player->instances[0].y += new_y;
+		nb_move++;
+		map->player->pos_x = new_x_player;
+		map->player->pos_y = new_y_player;
+		ft_printf("Number of moves : %d\n", nb_move);
+	}
+	player_grab_collectible(map);
 }
 
 void	key_press(mlx_key_data_t keydata, t_map *map)

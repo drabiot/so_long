@@ -64,6 +64,7 @@ static void	check_collectible(t_map **map, char *arg)
 		free_struct_map(current);
 		error_check(FEW_COLLECTIBLE_ERROR, arg);
 	}
+	current->tot_coll = nb_collectible;
 }
 
 static void	check_characters(t_map **map, char *arg)

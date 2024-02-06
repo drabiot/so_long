@@ -12,17 +12,12 @@
 
 #include "../include/so_long.h"
 
-void	player_init(t_map **map, t_player **player)
+static void	add_pos_player(t_map **map, t_player **player)
 {
 	int	i;
 	int	j;
 
-	*player = malloc(sizeof(t_player));
-	if (!*player)
-		exit(1);
 	i = 0;
-	(*player)->pos_x = -1;
-	(*player)->pos_y = -1;
 	while (i < (*map)->height)
 	{
 		j = 0;
@@ -39,4 +34,14 @@ void	player_init(t_map **map, t_player **player)
 	}
 }
 
-
+void	player_init(t_map **map, t_player **player)
+{
+	*player = malloc(sizeof(t_player));
+	if (!*player)
+		exit(1);
+	(*player)->pos_x = -1;
+	(*player)->pos_y = -1;
+	(*player)->coll = 0;
+	add_pos_player(map, player);
+	(*map)->player = *player;
+}

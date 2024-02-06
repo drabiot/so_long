@@ -60,6 +60,13 @@ typedef struct s_images
 	mlx_image_t	*exit[2];
 }			t_images;
 
+typedef struct s_player
+{
+	int	pos_x;
+	int	pos_y;
+	int	coll;
+}		t_player;
+
 typedef struct s_map
 {
 	int				height;
@@ -67,16 +74,12 @@ typedef struct s_map
 	char			**display_map;
 	int				pos_x_exit;
 	int				pos_y_exit;
+	int				tot_coll;
+	t_player		*player;
 	mlx_t			*mlx;
 	t_textures		*tx;
 	t_images		*img;
 }					t_map;
-
-typedef struct s_player
-{
-	int	pos_x;
-	int	pos_y;
-}		t_player;
 
 typedef void (*t_loop_hook_f)(void *);
 
@@ -105,6 +108,7 @@ void	display(t_map **map, t_player **player);
 void	hook(t_map *map);
 
 void	key_press(mlx_key_data_t keydata, t_map *map);
+void	display_floor(t_map *map, int i, int j);
 
 /* ********************************************************** */
 /*                                                            */
