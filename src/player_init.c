@@ -34,6 +34,16 @@ static void	add_pos_player(t_map **map, t_player **player)
 	}
 }
 
+void	display_player(t_map *map, t_player *player)
+{
+	int	x;
+	int	y;
+
+	x = player->pos_x * SPRITE_PIXEL;
+	y = player->pos_y * SPRITE_PIXEL;
+	mlx_image_to_window(map->mlx, map->img->player, x, y);
+}
+
 void	player_init(t_map **map, t_player **player)
 {
 	*player = malloc(sizeof(t_player));

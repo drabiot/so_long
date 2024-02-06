@@ -17,8 +17,8 @@ void	display_floor(t_map *map, int i, int j)
 	int	rand;
 	int	x;
 	int	y;
-	
-	rand = ft_rand(0,2);
+
+	rand = ft_rand(0, 2);
 	x = j * SPRITE_PIXEL;
 	y = i * SPRITE_PIXEL;
 	if (rand == 0)
@@ -33,7 +33,7 @@ static void	display_wall(t_map *map, int i, int j)
 {
 	int	x;
 	int	y;
-	
+
 	x = j * SPRITE_PIXEL;
 	y = i * SPRITE_PIXEL;
 	if (i == 0 && j == 0)
@@ -60,7 +60,7 @@ static void	display_exit(t_map *map, int i, int j)
 {
 	int	x;
 	int	y;
-	
+
 	x = j * SPRITE_PIXEL;
 	y = i * SPRITE_PIXEL;
 	mlx_image_to_window(map->mlx, map->img->exit[0], x, y);
@@ -70,16 +70,18 @@ static void	display_exit(t_map *map, int i, int j)
 
 static void	display_coll(t_map *map, int i, int j)
 {
-	int	x;
-	int	y;
-	
+	int		x;
+	int		y;
+	size_t	nb_coll;
+
 	x = j * SPRITE_PIXEL;
 	y = i * SPRITE_PIXEL;
+	nb_coll = map->img->collectible[1]->count;
 	if (map->display_map[i][j] == 'C')
 	{
 		mlx_image_to_window(map->mlx, map->img->collectible[0], x, y);
 		mlx_image_to_window(map->mlx, map->img->collectible[1], x, y);
-		map->img->collectible[1]->instances[map->img->collectible[1]->count].enabled = 0;
+		map->img->collectible[1]->instances[nb_coll].enabled = 0;
 	}
 }
 
@@ -107,5 +109,5 @@ void	display_map(t_map *map, t_player *player)
 		}
 		i++;
 	}
-	mlx_image_to_window(map->mlx, map->img->player, player->pos_x * SPRITE_PIXEL, player->pos_y * SPRITE_PIXEL);
+	display_player(map, player);
 }

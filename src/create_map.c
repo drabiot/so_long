@@ -54,7 +54,7 @@ static void	check_null_line(char *full_map, char *arg)
 	}
 }
 
-static void	init_value (t_map *map, int height, int width, char **split_map)
+static void	init_value(t_map *map, int height, int width, char **split_map)
 {
 	map->width = width;
 	map->height = height;

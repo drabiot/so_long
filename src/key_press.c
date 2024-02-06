@@ -13,7 +13,7 @@
 #include "../include/so_long.h"
 #include "../include/ft_printf.h"
 
-static void enter_trapdoor(t_map *map)
+static void	enter_trapdoor(t_map *map)
 {
 	if (map->display_map[map->player->pos_y][map->player->pos_x] == 'E'
 		&& map->img->exit[1]->instances[0].enabled == 1)
@@ -28,7 +28,7 @@ static void	player_grab_collectible(t_map *map)
 	int	i;
 	int	x;
 	int	y;
-	
+
 	i = 0;
 	x = map->player->pos_x * SPRITE_PIXEL;
 	y = map->player->pos_y * SPRITE_PIXEL;
@@ -38,7 +38,7 @@ static void	player_grab_collectible(t_map *map)
 		map->display_map[map->player->pos_y][map->player->pos_x] = 'c';
 		while ((size_t)i < map->img->collectible[0]->count
 			&& !(map->img->collectible[0]->instances[i].y == y
-			&& map->img->collectible[0]->instances[i].x == x))
+				&& map->img->collectible[0]->instances[i].x == x))
 			i++;
 		map->img->collectible[0]->instances[i].enabled = 0;
 		map->img->collectible[1]->instances[i].enabled = 0;
@@ -74,16 +74,16 @@ void	key_press(mlx_key_data_t keydata, t_map *map)
 {
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		mlx_close_window(map->mlx);
-	else if ((keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP) 
+	else if ((keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP)
 		&& keydata.action == MLX_PRESS)
 		move_player(map, 0, -SPRITE_PIXEL);
-	else if ((keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN) 
+	else if ((keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN)
 		&& keydata.action == MLX_PRESS)
 		move_player(map, 0, SPRITE_PIXEL);
-	else if ((keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_LEFT) 
+	else if ((keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_LEFT)
 		&& keydata.action == MLX_PRESS)
 		move_player(map, -SPRITE_PIXEL, 0);
-	else if ((keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT) 
+	else if ((keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
 		&& keydata.action == MLX_PRESS)
 		move_player(map, SPRITE_PIXEL, 0);
 	enter_trapdoor(map);

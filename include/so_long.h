@@ -109,6 +109,7 @@ void	hook(t_map *map);
 
 void	key_press(mlx_key_data_t keydata, t_map *map);
 void	display_floor(t_map *map, int i, int j);
+void	display_player(t_map *map, t_player *player);
 
 /* ********************************************************** */
 /*                                                            */

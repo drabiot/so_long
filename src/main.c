@@ -43,7 +43,6 @@ int	main(int argc, char **argv)
 		extension_check(argv[1], arg);
 		map_init(&map, arg);
 		player_init(&map, &player);
-		//collectible_init(&map);
 		check_path(&map, &player, arg);
 		game_init(map, player);
 		//free()
