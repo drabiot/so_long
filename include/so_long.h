@@ -41,7 +41,7 @@ enum	e_error
 typedef struct s_textures
 {
 	mlx_texture_t	*floor[3];
-	mlx_texture_t	*player;
+	mlx_texture_t	*player[2];
 	mlx_texture_t	*wall[4];
 	mlx_texture_t	*corner[4];
 	mlx_texture_t	*obstacle[1];
@@ -52,7 +52,7 @@ typedef struct s_textures
 typedef struct s_images
 {
 	mlx_image_t	*floor[3];
-	mlx_image_t	*player;
+	mlx_image_t	*player[2];
 	mlx_image_t	*wall[4];
 	mlx_image_t	*corner[4];
 	mlx_image_t	*obstacle[1];

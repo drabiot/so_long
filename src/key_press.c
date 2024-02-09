@@ -60,8 +60,10 @@ static void	move_player(t_map *map, int new_x, int new_y)
 	new_y_player = map->player->pos_y + new_y / SPRITE_PIXEL;
 	if (!(map->display_map[new_y_player][new_x_player] == '1'))
 	{
-		map->img->player->instances[0].x += new_x;
-		map->img->player->instances[0].y += new_y;
+		map->img->player[0]->instances[0].x += new_x;
+		map->img->player[0]->instances[0].y += new_y;
+		map->img->player[1]->instances[0].x += new_x;
+		map->img->player[1]->instances[0].y += new_y;
 		nb_move++;
 		map->player->pos_x = new_x_player;
 		map->player->pos_y = new_y_player;

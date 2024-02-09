@@ -19,7 +19,8 @@ static void	destroy_texture(t_map *map)
 	mlx_delete_texture(map->tx->floor[0]);
 	mlx_delete_texture(map->tx->floor[1]);
 	mlx_delete_texture(map->tx->floor[2]);
-	mlx_delete_texture(map->tx->player);
+	mlx_delete_texture(map->tx->player[0]);
+	mlx_delete_texture(map->tx->player[1]);
 	mlx_delete_texture(map->tx->wall[0]);
 	mlx_delete_texture(map->tx->wall[1]);
 	mlx_delete_texture(map->tx->wall[2]);
@@ -33,27 +34,7 @@ static void	destroy_texture(t_map *map)
 	mlx_delete_texture(map->tx->collectible[1]);
 	mlx_delete_texture(map->tx->exit[0]);
 	mlx_delete_texture(map->tx->exit[1]);
-}
-
-static void	destroy_image(t_map *map)
-{
-	mlx_delete_image(map->mlx, map->img->floor[0]);
-	mlx_delete_image(map->mlx, map->img->floor[1]);
-	mlx_delete_image(map->mlx, map->img->floor[2]);
-	mlx_delete_image(map->mlx, map->img->player);
-	mlx_delete_image(map->mlx, map->img->wall[0]);
-	mlx_delete_image(map->mlx, map->img->wall[1]);
-	mlx_delete_image(map->mlx, map->img->wall[2]);
-	mlx_delete_image(map->mlx, map->img->wall[3]);
-	mlx_delete_image(map->mlx, map->img->corner[0]);
-	mlx_delete_image(map->mlx, map->img->corner[1]);
-	mlx_delete_image(map->mlx, map->img->corner[2]);
-	mlx_delete_image(map->mlx, map->img->corner[3]);
-	mlx_delete_image(map->mlx, map->img->obstacle[0]);
-	mlx_delete_image(map->mlx, map->img->collectible[0]);
-	mlx_delete_image(map->mlx, map->img->collectible[1]);
-	mlx_delete_image(map->mlx, map->img->exit[0]);
-	mlx_delete_image(map->mlx, map->img->exit[1]);
+	free(map->tx);
 }
 
 static char	*create_arg(char *argv)
@@ -88,7 +69,7 @@ int	main(int argc, char **argv)
 		check_path(&map, &player, arg);
 		free(arg);
 		game_init(map, player);
-		destroy_image(map);
+		free(map->img);
 		destroy_texture(map);
 		mlx_terminate(map->mlx);
 		free_struct_map(map);

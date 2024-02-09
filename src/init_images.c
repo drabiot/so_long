@@ -21,7 +21,8 @@ static void png_to_texture(t_map *map)
 	map->tx->floor[0] = mlx_load_png("./textures/floor.png");
 	map->tx->floor[1] = mlx_load_png("./textures/floor2.png");
 	map->tx->floor[2] = mlx_load_png("./textures/floor3.png");
-	map->tx->player = mlx_load_png("./textures/player.png");
+	map->tx->player[0] = mlx_load_png("./textures/player.png");
+	map->tx->player[1] = mlx_load_png("./textures/player1.png");
 	map->tx->wall[0] = mlx_load_png("./textures/wall_up.png");
 	map->tx->wall[1] = mlx_load_png("./textures/wall_right.png");
 	map->tx->wall[2] = mlx_load_png("./textures/wall_down.png");
@@ -45,7 +46,8 @@ static void	texture_to_image(t_map *map)
 	map->img->floor[0] = mlx_texture_to_image(map->mlx, map->tx->floor[0]);
 	map->img->floor[1] = mlx_texture_to_image(map->mlx, map->tx->floor[1]);
 	map->img->floor[2] = mlx_texture_to_image(map->mlx, map->tx->floor[2]);
-	map->img->player = mlx_texture_to_image(map->mlx, map->tx->player);
+	map->img->player[0] = mlx_texture_to_image(map->mlx, map->tx->player[0]);
+	map->img->player[1] = mlx_texture_to_image(map->mlx, map->tx->player[1]);
 	map->img->wall[0] = mlx_texture_to_image(map->mlx, map->tx->wall[0]);
 	map->img->wall[1] = mlx_texture_to_image(map->mlx, map->tx->wall[1]);
 	map->img->wall[2] = mlx_texture_to_image(map->mlx, map->tx->wall[2]);

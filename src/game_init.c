@@ -34,6 +34,8 @@ void	hook(t_map *map)
 			}
 			i++;
 		}
+		map->img->player[frame]->instances[0].enabled = 0;
+		map->img->player[(frame + 1) % 2]->instances[0].enabled = 1;
 		frame++;
 	}
 }
@@ -49,6 +51,4 @@ void	game_init(t_map *map, t_player *player)
 	mlx_loop_hook(map->mlx, (t_loop_hook_f)hook, (void *)map);
 	mlx_key_hook(map->mlx, (void *)key_press, map);
 	mlx_loop(map->mlx);
-	mlx_close_window(map->mlx);
-	mlx_terminate(map->mlx);
 }

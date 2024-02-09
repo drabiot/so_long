@@ -86,7 +86,7 @@ t_map	*map_node_init(t_map **map, char *full_map, int width, char *arg)
 		i++;
 	}
 	*map = malloc(sizeof(t_map));
-	if (!*map || !map)
+	if (!map || !*map)
 		return (NULL);
 	init_value(*map, i, width, split_map);
 	add_exit_pos(map);
