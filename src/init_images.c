@@ -13,7 +13,7 @@
 #include "../include/so_long.h"
 #include "../include/ft_printf.h"
 
-static void png_to_texture(t_map *map)
+static void	png_to_texture(t_map *map)
 {
 	map->tx = malloc(sizeof(t_textures));
 	if (!map->tx)
@@ -31,11 +31,13 @@ static void png_to_texture(t_map *map)
 	map->tx->corner[1] = mlx_load_png("./textures/corner_ur.png");
 	map->tx->corner[2] = mlx_load_png("./textures/corner_dr.png");
 	map->tx->corner[3] = mlx_load_png("./textures/corner_dl.png");
-	map->tx->obstacle[0] = mlx_load_png("./textures/pot.png");
-	map->tx->collectible[0] = mlx_load_png("./textures/collectible.png");
-	map->tx->collectible[1] = mlx_load_png("./textures/collectible1.png");
+	map->tx->obs[0] = mlx_load_png("./textures/pot.png");
+	map->tx->collec[0] = mlx_load_png("./textures/collec.png");
+	map->tx->collec[1] = mlx_load_png("./textures/collec1.png");
 	map->tx->exit[0] = mlx_load_png("./textures/close_exit.png");
 	map->tx->exit[1] = mlx_load_png("./textures/open_exit.png");
+	map->tx->enemy[0] = mlx_load_png("./textures/enemy.png");
+	map->tx->enemy[1] = mlx_load_png("./textures/enemy1.png");
 }
 
 static void	texture_to_image(t_map *map)
@@ -56,11 +58,13 @@ static void	texture_to_image(t_map *map)
 	map->img->corner[1] = mlx_texture_to_image(map->mlx, map->tx->corner[1]);
 	map->img->corner[2] = mlx_texture_to_image(map->mlx, map->tx->corner[2]);
 	map->img->corner[3] = mlx_texture_to_image(map->mlx, map->tx->corner[3]);
-	map->img->obstacle[0] = mlx_texture_to_image(map->mlx, map->tx->obstacle[0]);
-	map->img->collectible[0] = mlx_texture_to_image(map->mlx, map->tx->collectible[0]);
-	map->img->collectible[1] = mlx_texture_to_image(map->mlx, map->tx->collectible[1]);
+	map->img->obs[0] = mlx_texture_to_image(map->mlx, map->tx->obs[0]);
+	map->img->collec[0] = mlx_texture_to_image(map->mlx, map->tx->collec[0]);
+	map->img->collec[1] = mlx_texture_to_image(map->mlx, map->tx->collec[1]);
 	map->img->exit[0] = mlx_texture_to_image(map->mlx, map->tx->exit[0]);
 	map->img->exit[1] = mlx_texture_to_image(map->mlx, map->tx->exit[1]);
+	map->img->enemy[0] = mlx_texture_to_image(map->mlx, map->tx->enemy[0]);
+	map->img->enemy[1] = mlx_texture_to_image(map->mlx, map->tx->enemy[1]);
 }
 
 void	init_png(t_map *map)

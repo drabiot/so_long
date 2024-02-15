@@ -24,6 +24,10 @@ CFLAGS		=		-Wall -Wextra -Werror
 GFLAGS		=		$(CFLAGS) -g
 MLX_FLAGS	=		-ldl -lX11 -lglfw -lm -lz -lbsd -lXext
 
+ifdef CHECK
+	GFLAGS += -fsanitize=address
+endif
+
 #=========== COLOR ============#
 
 BASE_COLOR 	=		\033[0;39m
@@ -58,12 +62,17 @@ SRCS		=		main.c \
 					check_walls.c \
 					check_path.c \
 					player_init.c \
-					collectible_init.c \
+					copy_map.c \
 					init_images.c \
 					game_init.c \
 					ft_random.c \
 					display.c \
-					key_press.c
+					key_press.c \
+					enemy_init.c \
+					ia_enemy.c \
+					calculate_cost.c \
+					move_enemy.c \
+					animation.c
 
 OBJS		=		$(SRCS:.c=.o)
 
@@ -86,7 +95,7 @@ makeprintf :
 					@make -C $(PRINTF_DIR) all --no-print-directory
 
 $(NAME) :			makemlx $(OBJS_F) | makelibft makeprintf
-					@$(CC) $(OBJS_F) $(MLX_FLAGS) -o $(NAME) -Llibft -lft -Lft_printf -l:ft_printf.a -Lmlx42/src -lmlx42 -I$(INCLUDE_DIR) -I$(INC_MLX_DIR)
+					@$(CC) $(OBJS_F) $(MLX_FLAGS) -o $(NAME) -Llibft -lft -Lft_printf -l:ft_printf.a -Lmlx42/src -lmlx42 -I$(INCLUDE_DIR) -I$(INC_MLX_DIR) $(GFLAGS)
 					@echo "$(GREEN)Pipex successfully compiled! $(BASE_COLOR)"
 
 $(OBJS_DIR)%.o :	$(SRCS_DIR)%.c $(INCLUDE)

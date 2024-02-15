@@ -13,6 +13,27 @@
 #include "../include/so_long.h"
 #include "../include/ft_printf.h"
 
+static void	touch_enemy(t_map *map)
+{
+	int	i;
+	int	player_x;
+	int	player_y;
+
+	i = map->img->enemy[0]->count - 1;
+	while (i >= 0)
+	{
+		player_x = map->img->player[0]->instances[0].x;
+		player_y = map->img->player[0]->instances[0].y;
+		if (map->img->enemy[0]->instances[i].y == player_y
+			&& map->img->enemy[0]->instances[i].x == player_x)
+		{
+			ft_printf("You loose...");
+			mlx_close_window(map->mlx);
+		}
+		i--;
+	}
+}
+
 static void	enter_trapdoor(t_map *map)
 {
 	if (map->display_map[map->player->pos_y][map->player->pos_x] == 'E'
@@ -36,12 +57,12 @@ static void	player_grab_collectible(t_map *map)
 	{
 		map->player->coll++;
 		map->display_map[map->player->pos_y][map->player->pos_x] = 'c';
-		while ((size_t)i < map->img->collectible[0]->count
-			&& !(map->img->collectible[0]->instances[i].y == y
-				&& map->img->collectible[0]->instances[i].x == x))
+		while ((size_t)i < map->img->collec[0]->count
+			&& !(map->img->collec[0]->instances[i].y == y
+				&& map->img->collec[0]->instances[i].x == x))
 			i++;
-		map->img->collectible[0]->instances[i].enabled = 0;
-		map->img->collectible[1]->instances[i].enabled = 0;
+		map->img->collec[0]->instances[i].enabled = 0;
+		map->img->collec[1]->instances[i].enabled = 0;
 	}
 	if (map->player->coll == map->tot_coll)
 	{
@@ -56,6 +77,7 @@ static void	move_player(t_map *map, int new_x, int new_y)
 	int			new_x_player;
 	int			new_y_player;
 
+	pathfinding_enemy(map);
 	new_x_player = map->player->pos_x + new_x / SPRITE_PIXEL;
 	new_y_player = map->player->pos_y + new_y / SPRITE_PIXEL;
 	if (!(map->display_map[new_y_player][new_x_player] == '1'))
@@ -70,6 +92,8 @@ static void	move_player(t_map *map, int new_x, int new_y)
 		ft_printf("Number of moves : %d\n", nb_move);
 	}
 	player_grab_collectible(map);
+	enter_trapdoor(map);
+	touch_enemy(map);
 }
 
 void	key_press(mlx_key_data_t keydata, t_map *map)
@@ -88,5 +112,4 @@ void	key_press(mlx_key_data_t keydata, t_map *map)
 	else if ((keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
 		&& keydata.action == MLX_PRESS)
 		move_player(map, SPRITE_PIXEL, 0);
-	enter_trapdoor(map);
 }

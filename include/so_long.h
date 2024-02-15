@@ -44,9 +44,10 @@ typedef struct s_textures
 	mlx_texture_t	*player[2];
 	mlx_texture_t	*wall[4];
 	mlx_texture_t	*corner[4];
-	mlx_texture_t	*obstacle[1];
-	mlx_texture_t	*collectible[2];
+	mlx_texture_t	*obs[1];
+	mlx_texture_t	*collec[2];
 	mlx_texture_t	*exit[2];
+	mlx_texture_t	*enemy[2];
 }			t_textures;
 
 typedef struct s_images
@@ -55,9 +56,10 @@ typedef struct s_images
 	mlx_image_t	*player[2];
 	mlx_image_t	*wall[4];
 	mlx_image_t	*corner[4];
-	mlx_image_t	*obstacle[1];
-	mlx_image_t	*collectible[2];
+	mlx_image_t	*obs[1];
+	mlx_image_t	*collec[2];
 	mlx_image_t	*exit[2];
+	mlx_image_t	*enemy[2];
 }			t_images;
 
 typedef struct s_player
@@ -80,8 +82,6 @@ typedef struct s_map
 	t_textures		*tx;
 	t_images		*img;
 }					t_map;
-
-typedef void (*t_loop_hook_f)(void *);
 
 void	error_check(int error, char *arg);
 void	extension_check(char *map, char *arg);
@@ -110,6 +110,20 @@ void	hook(t_map *map);
 void	key_press(mlx_key_data_t keydata, t_map *map);
 void	display_floor(t_map *map, int i, int j);
 void	display_player(t_map *map, t_player *player);
+
+void	enemy_init(t_map *map);
+char	**copy_map(t_map *map);
+void	ia_enemy(char **map, char **travel_map, int x, int y);
+void	pathfinding_enemy(t_map *map);
+void	check_flood_enemy(char **map, char **travel_map, int x, int y);
+
+int	cost_move_enemy_x(char **map, int x, int y);
+int	cost_move_enemy_y(char **map, int x, int y);
+int	move_enemy_x(char **map, int x, int y);
+int	move_enemy_y(char **map, int x, int y);
+
+void	move_enemy(t_map *map, char **cpy_map);
+void	animation(t_map *map);
 
 /* ********************************************************** */
 /*                                                            */

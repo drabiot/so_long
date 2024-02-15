@@ -53,7 +53,7 @@ static void	display_wall(t_map *map, int i, int j)
 	else if (j == 0)
 		mlx_image_to_window(map->mlx, map->img->wall[3], x, y);
 	else
-		mlx_image_to_window(map->mlx, map->img->obstacle[0], x, y);
+		mlx_image_to_window(map->mlx, map->img->obs[0], x, y);
 }
 
 static void	display_exit(t_map *map, int i, int j)
@@ -76,12 +76,12 @@ static void	display_coll(t_map *map, int i, int j)
 
 	x = j * SPRITE_PIXEL;
 	y = i * SPRITE_PIXEL;
-	nb_coll = map->img->collectible[1]->count;
+	nb_coll = map->img->collec[0]->count;
 	if (map->display_map[i][j] == 'C')
 	{
-		mlx_image_to_window(map->mlx, map->img->collectible[0], x, y);
-		mlx_image_to_window(map->mlx, map->img->collectible[1], x, y);
-		map->img->collectible[1]->instances[nb_coll].enabled = 0;
+		mlx_image_to_window(map->mlx, map->img->collec[0], x, y);
+		mlx_image_to_window(map->mlx, map->img->collec[1], x, y);
+		map->img->collec[1]->instances[nb_coll].enabled = 0;
 	}
 }
 
@@ -110,4 +110,5 @@ void	display_map(t_map *map, t_player *player)
 		i++;
 	}
 	display_player(map, player);
+	enemy_init(map);
 }

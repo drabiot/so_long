@@ -29,11 +29,13 @@ static void	destroy_texture(t_map *map)
 	mlx_delete_texture(map->tx->corner[1]);
 	mlx_delete_texture(map->tx->corner[2]);
 	mlx_delete_texture(map->tx->corner[3]);
-	mlx_delete_texture(map->tx->obstacle[0]);
-	mlx_delete_texture(map->tx->collectible[0]);
-	mlx_delete_texture(map->tx->collectible[1]);
+	mlx_delete_texture(map->tx->obs[0]);
+	mlx_delete_texture(map->tx->collec[0]);
+	mlx_delete_texture(map->tx->collec[1]);
 	mlx_delete_texture(map->tx->exit[0]);
 	mlx_delete_texture(map->tx->exit[1]);
+	mlx_delete_texture(map->tx->enemy[0]);
+	mlx_delete_texture(map->tx->enemy[1]);
 	free(map->tx);
 }
 
