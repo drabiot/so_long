@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ia_enemy.c                                         :+:      :+:    :+:   */
+/*   ai_enemy.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchartie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -42,7 +42,7 @@ void	check_flood_enemy(char **map, char **travel_map, int x, int y)
 	check_flood_enemy(map, travel_map, x - 1, y);
 }
 
-void	ia_enemy(char **map, char **travel_map, int x, int y)
+void	ai_enemy(char **map, char **travel_map, int x, int y)
 {
 	if (travel_map[y][x] == '1' || travel_map[y][x] == 'W'
 		|| map[y][x] == 'D' || map[y][x] == 'C' || map[y][x] == 'E')
@@ -56,8 +56,8 @@ void	ia_enemy(char **map, char **travel_map, int x, int y)
 		map[y][x + 1] = check_min(map, x + 1, y) + 1;
 	if (map[y][x - 1] == 'O')
 		map[y][x - 1] = check_min(map, x - 1, y) + 1;
-	ia_enemy(map, travel_map, x, y + 1);
-	ia_enemy(map, travel_map, x, y - 1);
-	ia_enemy(map, travel_map, x + 1, y);
-	ia_enemy(map, travel_map, x - 1, y);
+	ai_enemy(map, travel_map, x, y + 1);
+	ai_enemy(map, travel_map, x, y - 1);
+	ai_enemy(map, travel_map, x + 1, y);
+	ai_enemy(map, travel_map, x - 1, y);
 }

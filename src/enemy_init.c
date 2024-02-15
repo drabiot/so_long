@@ -24,7 +24,7 @@ void	pathfinding_enemy(t_map *map)
 	x = map->player->pos_x;
 	y = map->player->pos_y;
 	cpy_map[y][x] = 1;
-	ia_enemy(cpy_map, travel_map, x, y);
+	ai_enemy(cpy_map, travel_map, x, y);
 	check_flood_enemy(cpy_map, travel_map, x, y);
 	move_enemy(map, cpy_map);
 	free_matrix(cpy_map);

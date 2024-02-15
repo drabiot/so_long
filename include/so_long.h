@@ -113,7 +113,7 @@ void	display_player(t_map *map, t_player *player);
 
 void	enemy_init(t_map *map);
 char	**copy_map(t_map *map);
-void	ia_enemy(char **map, char **travel_map, int x, int y);
+void	ai_enemy(char **map, char **travel_map, int x, int y);
 void	pathfinding_enemy(t_map *map);
 void	check_flood_enemy(char **map, char **travel_map, int x, int y);
 

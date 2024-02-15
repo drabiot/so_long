@@ -69,7 +69,7 @@ SRCS		=		main.c \
 					display.c \
 					key_press.c \
 					enemy_init.c \
-					ia_enemy.c \
+					ai_enemy.c \
 					calculate_cost.c \
 					move_enemy.c \
 					animation.c
