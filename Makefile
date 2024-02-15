@@ -72,7 +72,8 @@ SRCS		=		main.c \
 					ai_enemy.c \
 					calculate_cost.c \
 					move_enemy.c \
-					animation.c
+					animation.c \
+					defeat.c
 
 OBJS		=		$(SRCS:.c=.o)
 

@@ -61,6 +61,7 @@ static void	init_value(t_map *map, int height, int width, char **split_map)
 	map->display_map = split_map;
 	map->pos_x_exit = 0;
 	map->pos_y_exit = 0;
+	map->dead = 0;
 	map->player = NULL;
 	map->mlx = NULL;
 	map->tx = NULL;

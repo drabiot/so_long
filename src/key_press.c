@@ -18,17 +18,22 @@ static void	touch_enemy(t_map *map)
 	int	i;
 	int	player_x;
 	int	player_y;
+	int	exit_x;
+	int	exit_y;
 
 	i = map->img->enemy[0]->count - 1;
+	exit_x = map->img->exit[0]->instances[0].x;
+	exit_y = map->img->exit[0]->instances[0].y;
 	while (i >= 0)
 	{
 		player_x = map->img->player[0]->instances[0].x;
 		player_y = map->img->player[0]->instances[0].y;
-		if (map->img->enemy[0]->instances[i].y == player_y
-			&& map->img->enemy[0]->instances[i].x == player_x)
+		if ((map->img->enemy[0]->instances[i].y == player_y
+				&& map->img->enemy[0]->instances[i].x == player_x)
+			&& (map->img->enemy[0]->instances[i].y != exit_y
+				&& map->img->enemy[0]->instances[i].x != exit_x))
 		{
-			ft_printf("You loose...");
-			mlx_close_window(map->mlx);
+			defeat(map);
 		}
 		i--;
 	}
@@ -100,16 +105,19 @@ void	key_press(mlx_key_data_t keydata, t_map *map)
 {
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		mlx_close_window(map->mlx);
-	else if ((keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP)
-		&& keydata.action == MLX_PRESS)
-		move_player(map, 0, -SPRITE_PIXEL);
-	else if ((keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN)
-		&& keydata.action == MLX_PRESS)
-		move_player(map, 0, SPRITE_PIXEL);
-	else if ((keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_LEFT)
-		&& keydata.action == MLX_PRESS)
-		move_player(map, -SPRITE_PIXEL, 0);
-	else if ((keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
-		&& keydata.action == MLX_PRESS)
-		move_player(map, SPRITE_PIXEL, 0);
+	if (map->dead == 0)
+	{
+		if ((keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP)
+			&& keydata.action == MLX_PRESS)
+			move_player(map, 0, -SPRITE_PIXEL);
+		else if ((keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN)
+			&& keydata.action == MLX_PRESS)
+			move_player(map, 0, SPRITE_PIXEL);
+		else if ((keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_LEFT)
+			&& keydata.action == MLX_PRESS)
+			move_player(map, -SPRITE_PIXEL, 0);
+		else if ((keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
+			&& keydata.action == MLX_PRESS)
+			move_player(map, SPRITE_PIXEL, 0);
+	}
 }

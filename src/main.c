@@ -14,14 +14,11 @@
 #include "../include/libft.h"
 #include "../include/ft_printf.h"
 
-static void	destroy_texture(t_map *map)
+static void	destroy_walls_tx(t_map	*map)
 {
 	mlx_delete_texture(map->tx->floor[0]);
 	mlx_delete_texture(map->tx->floor[1]);
 	mlx_delete_texture(map->tx->floor[2]);
-	mlx_delete_texture(map->tx->player[0]);
-	mlx_delete_texture(map->tx->player[1]);
-	mlx_delete_texture(map->tx->wall[0]);
 	mlx_delete_texture(map->tx->wall[1]);
 	mlx_delete_texture(map->tx->wall[2]);
 	mlx_delete_texture(map->tx->wall[3]);
@@ -30,12 +27,24 @@ static void	destroy_texture(t_map *map)
 	mlx_delete_texture(map->tx->corner[2]);
 	mlx_delete_texture(map->tx->corner[3]);
 	mlx_delete_texture(map->tx->obs[0]);
+}
+
+static void	destroy_texture(t_map *map)
+{
+	destroy_walls_tx(map);
+	mlx_delete_texture(map->tx->player[0]);
+	mlx_delete_texture(map->tx->player[1]);
+	mlx_delete_texture(map->tx->wall[0]);
 	mlx_delete_texture(map->tx->collec[0]);
 	mlx_delete_texture(map->tx->collec[1]);
 	mlx_delete_texture(map->tx->exit[0]);
 	mlx_delete_texture(map->tx->exit[1]);
 	mlx_delete_texture(map->tx->enemy[0]);
 	mlx_delete_texture(map->tx->enemy[1]);
+	mlx_delete_texture(map->tx->banner[0]);
+	mlx_delete_texture(map->tx->banner[1]);
+	mlx_delete_texture(map->tx->banner[2]);
+	mlx_delete_texture(map->tx->banner[3]);
 	free(map->tx);
 }
 
