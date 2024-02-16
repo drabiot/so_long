@@ -35,6 +35,7 @@ static void	png_to_texture(t_map *map)
 	if (!map->tx)
 		return ;
 	texture_walls(map);
+	texture_numbers(map);
 	map->tx->player[0] = mlx_load_png("./textures/player.png");
 	map->tx->player[1] = mlx_load_png("./textures/player1.png");
 	map->tx->collec[0] = mlx_load_png("./textures/collec.png");
@@ -71,6 +72,7 @@ static void	texture_to_image(t_map *map)
 	if (!map->img)
 		return ;
 	image_walls(map);
+	image_numbers(map);
 	map->img->player[0] = mlx_texture_to_image(map->mlx, map->tx->player[0]);
 	map->img->player[1] = mlx_texture_to_image(map->mlx, map->tx->player[1]);
 	map->img->collec[0] = mlx_texture_to_image(map->mlx, map->tx->collec[0]);

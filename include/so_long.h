@@ -49,6 +49,7 @@ typedef struct s_textures
 	mlx_texture_t	*exit[2];
 	mlx_texture_t	*enemy[2];
 	mlx_texture_t	*banner[4];
+	mlx_texture_t	*number[10];
 }			t_textures;
 
 typedef struct s_images
@@ -62,6 +63,7 @@ typedef struct s_images
 	mlx_image_t	*exit[2];
 	mlx_image_t	*enemy[2];
 	mlx_image_t	*banner[4];
+	mlx_image_t	*number[10];
 }			t_images;
 
 typedef struct s_player
@@ -128,6 +130,11 @@ int	move_enemy_y(char **map, int x, int y);
 void	move_enemy(t_map *map, char **cpy_map);
 void	animation(t_map *map);
 void	defeat(t_map *map);
+
+void	texture_numbers(t_map *map);
+void	image_numbers(t_map *map);
+void	display_counter(t_map *map);
+void	update_score(t_map *map, int move);
 
 /* ********************************************************** */
 /*                                                            */

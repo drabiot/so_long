@@ -14,7 +14,7 @@
 #include "../include/libft.h"
 #include "../include/ft_printf.h"
 
-static void	destroy_walls_tx(t_map	*map)
+static void	destroy_walls_tx(t_map *map)
 {
 	mlx_delete_texture(map->tx->floor[0]);
 	mlx_delete_texture(map->tx->floor[1]);
@@ -29,9 +29,24 @@ static void	destroy_walls_tx(t_map	*map)
 	mlx_delete_texture(map->tx->obs[0]);
 }
 
+static void	destroy_numbers_tx(t_map *map)
+{
+	mlx_delete_texture(map->tx->number[0]);
+	mlx_delete_texture(map->tx->number[1]);
+	mlx_delete_texture(map->tx->number[2]);
+	mlx_delete_texture(map->tx->number[3]);
+	mlx_delete_texture(map->tx->number[4]);
+	mlx_delete_texture(map->tx->number[5]);
+	mlx_delete_texture(map->tx->number[6]);
+	mlx_delete_texture(map->tx->number[7]);
+	mlx_delete_texture(map->tx->number[8]);
+	mlx_delete_texture(map->tx->number[9]);
+}
+
 static void	destroy_texture(t_map *map)
 {
 	destroy_walls_tx(map);
+	destroy_numbers_tx(map);
 	mlx_delete_texture(map->tx->player[0]);
 	mlx_delete_texture(map->tx->player[1]);
 	mlx_delete_texture(map->tx->wall[0]);

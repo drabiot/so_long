@@ -14,8 +14,12 @@
 
 static void	animation_player(t_map *map, int frame)
 {
-	map->img->player[frame]->instances[0].enabled = 0;
-	map->img->player[(frame + 1) % 2]->instances[0].enabled = 1;
+	if (!(map->img->player[0]->instances[0].enabled == 0
+			&& map->img->player[1]->instances[0].enabled == 0))
+	{
+		map->img->player[frame]->instances[0].enabled = 0;
+		map->img->player[(frame + 1) % 2]->instances[0].enabled = 1;
+	}
 }
 
 static void	animation_collectible(t_map *map, int frame)

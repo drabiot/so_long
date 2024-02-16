@@ -111,4 +111,5 @@ void	display_map(t_map *map, t_player *player)
 	}
 	display_player(map, player);
 	enemy_init(map);
+	display_counter(map);
 }

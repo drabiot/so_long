@@ -73,7 +73,9 @@ SRCS		=		main.c \
 					calculate_cost.c \
 					move_enemy.c \
 					animation.c \
-					defeat.c
+					defeat.c \
+					score.c \
+					counter_init.c
 
 OBJS		=		$(SRCS:.c=.o)
 

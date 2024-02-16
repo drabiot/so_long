@@ -69,7 +69,7 @@ static void	add_banner(t_map *map, int middle)
 
 	frame = 0;
 	middle *= SPRITE_PIXEL;
-	while (frame < 10)
+	while (frame < 8)
 	{
 		mlx_loop_hook(map->mlx, (void *)title_screen, (void *)map);
 		frame++;
@@ -85,7 +85,9 @@ void	defeat(t_map *map)
 		middle = (map->height / 2) + 1;
 	else
 		middle = (map->height / 2) * SPRITE_PIXEL - (SPRITE_PIXEL / 2);
+	map->img->player[0]->instances[0].enabled = 0;
+	map->img->player[1]->instances[0].enabled = 0;
 	add_banner(map, middle);
-	ft_printf("You loose...");
+	ft_printf("You lost...");
 	mlx_loop_hook(map->mlx, (void *)death_screen, (void *)map);
 }

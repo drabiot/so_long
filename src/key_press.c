@@ -32,9 +32,7 @@ static void	touch_enemy(t_map *map)
 				&& map->img->enemy[0]->instances[i].x == player_x)
 			&& (map->img->enemy[0]->instances[i].y != exit_y
 				&& map->img->enemy[0]->instances[i].x != exit_x))
-		{
 			defeat(map);
-		}
 		i--;
 	}
 }
@@ -96,6 +94,7 @@ static void	move_player(t_map *map, int new_x, int new_y)
 		map->player->pos_y = new_y_player;
 		ft_printf("Number of moves : %d\n", nb_move);
 	}
+	update_score(map, nb_move);
 	player_grab_collectible(map);
 	enter_trapdoor(map);
 	touch_enemy(map);
