@@ -41,6 +41,7 @@ static void	destroy_numbers_tx(t_map *map)
 	mlx_delete_texture(map->tx->number[7]);
 	mlx_delete_texture(map->tx->number[8]);
 	mlx_delete_texture(map->tx->number[9]);
+	mlx_delete_texture(map->tx->number[10]);
 }
 
 static void	destroy_texture(t_map *map)
@@ -60,6 +61,8 @@ static void	destroy_texture(t_map *map)
 	mlx_delete_texture(map->tx->banner[1]);
 	mlx_delete_texture(map->tx->banner[2]);
 	mlx_delete_texture(map->tx->banner[3]);
+	mlx_delete_texture(map->tx->banner[4]);
+	mlx_delete_texture(map->tx->banner[5]);
 	free(map->tx);
 }
 

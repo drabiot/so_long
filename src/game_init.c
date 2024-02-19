@@ -12,6 +12,11 @@
 
 #include "../include/so_long.h"
 
+static void	scoring(t_map *map)
+{
+	display_score_collectible(map);
+}
+
 void	game_init(t_map *map, t_player *player)
 {
 	(void)player;
@@ -22,5 +27,6 @@ void	game_init(t_map *map, t_player *player)
 	display_map(map, player);
 	mlx_loop_hook(map->mlx, (void *)animation, (void *)map);
 	mlx_key_hook(map->mlx, (void *)key_press, map);
+	mlx_loop_hook(map->mlx, (void *)scoring, (void *)map);
 	mlx_loop(map->mlx);
 }

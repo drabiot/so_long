@@ -24,6 +24,7 @@ void	texture_numbers(t_map *map)
 	map->tx->number[7] = mlx_load_png("./textures/7.png");
 	map->tx->number[8] = mlx_load_png("./textures/8.png");
 	map->tx->number[9] = mlx_load_png("./textures/9.png");
+	map->tx->number[10] = mlx_load_png("./textures/separator.png");
 }
 
 void	image_numbers(t_map *map)
@@ -38,10 +39,14 @@ void	image_numbers(t_map *map)
 	map->img->number[7] = mlx_texture_to_image(map->mlx, map->tx->number[7]);
 	map->img->number[8] = mlx_texture_to_image(map->mlx, map->tx->number[8]);
 	map->img->number[9] = mlx_texture_to_image(map->mlx, map->tx->number[9]);
+	map->img->number[10] = mlx_texture_to_image(map->mlx, map->tx->number[10]);
 }
 
-static void	display_numbers(t_map *map, int x, int y)
+static void	display_numbers(t_map *map, int x)
 {
+	int	y;
+
+	y = -(SPRITE_PIXEL / 16);
 	mlx_image_to_window(map->mlx, map->img->number[0], x, y);
 	mlx_image_to_window(map->mlx, map->img->number[1], x, y);
 	mlx_image_to_window(map->mlx, map->img->number[2], x, y);
@@ -54,14 +59,34 @@ static void	display_numbers(t_map *map, int x, int y)
 	mlx_image_to_window(map->mlx, map->img->number[9], x, y);
 }
 
+static void	display_layout_banner(t_map *map)
+{
+	int	i;
+	int	wdt;
+	int	hgt;
+
+	i = 0;
+	hgt = (map->height - 1) * SPRITE_PIXEL;
+	while (i < 5)
+	{
+		wdt = i * SPRITE_PIXEL;
+		mlx_image_to_window(map->mlx, map->img->banner[5], wdt, hgt);
+		if (i != 0)
+			map->img->banner[5]->instances[i].enabled = 0;
+		i++;
+	}
+}
+
 void	display_counter(t_map *map)
 {
 	int	i;
 
 	i = 0;
+	mlx_image_to_window(map->mlx, map->img->banner[4], 0, 0);
+	display_layout_banner(map);
 	while (i < 3)
 	{
-		display_numbers(map, i * SPRITE_PIXEL, 0);
+		display_numbers(map, i * SPRITE_PIXEL);
 		map->img->number[1]->instances[i].enabled = 0;
 		map->img->number[2]->instances[i].enabled = 0;
 		map->img->number[3]->instances[i].enabled = 0;
@@ -73,4 +98,5 @@ void	display_counter(t_map *map)
 		map->img->number[9]->instances[i].enabled = 0;
 		i++;
 	}
+	display_numbers_coll(map);
 }

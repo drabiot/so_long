@@ -74,7 +74,7 @@ void	enemy_init(t_map *map)
 {
 	int	nb_enemy;
 
-	nb_enemy = (5 * check_nb(map, '0')) / 300;
+	nb_enemy = (5 * (check_nb(map, '0') + check_nb(map, 'C'))) / 300;
 	while (nb_enemy)
 	{
 		check_pos_enemy(map);

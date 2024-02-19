@@ -48,8 +48,8 @@ typedef struct s_textures
 	mlx_texture_t	*collec[2];
 	mlx_texture_t	*exit[2];
 	mlx_texture_t	*enemy[2];
-	mlx_texture_t	*banner[4];
-	mlx_texture_t	*number[10];
+	mlx_texture_t	*banner[6];
+	mlx_texture_t	*number[11];
 }			t_textures;
 
 typedef struct s_images
@@ -62,8 +62,8 @@ typedef struct s_images
 	mlx_image_t	*collec[2];
 	mlx_image_t	*exit[2];
 	mlx_image_t	*enemy[2];
-	mlx_image_t	*banner[4];
-	mlx_image_t	*number[10];
+	mlx_image_t	*banner[6];
+	mlx_image_t	*number[11];
 }			t_images;
 
 typedef struct s_player
@@ -135,6 +135,14 @@ void	texture_numbers(t_map *map);
 void	image_numbers(t_map *map);
 void	display_counter(t_map *map);
 void	update_score(t_map *map, int move);
+
+void	display_score_collectible(t_map *map);
+void	hide_all_number(t_map *map, int instance);
+void	reveal_number(t_map *map, int instance, int value);
+void	display_numbers_coll(t_map *map);
+
+int	track_coll_unity(t_map *map, int i, int coll);
+int	track_coll_base(t_map *map, int i, int coll);
 
 /* ********************************************************** */
 /*                                                            */

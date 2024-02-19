@@ -48,6 +48,8 @@ static void	png_to_texture(t_map *map)
 	map->tx->banner[1] = mlx_load_png("./textures/banner_even_top.png");
 	map->tx->banner[2] = mlx_load_png("./textures/banner_even_bot.png");
 	map->tx->banner[3] = mlx_load_png("./textures/banner_title.png");
+	map->tx->banner[4] = mlx_load_png("./textures/layout_score.png");
+	map->tx->banner[5] = mlx_load_png("./textures/layout_coll.png");
 }
 
 static void	image_walls(t_map *map)
@@ -85,6 +87,8 @@ static void	texture_to_image(t_map *map)
 	map->img->banner[1] = mlx_texture_to_image(map->mlx, map->tx->banner[1]);
 	map->img->banner[2] = mlx_texture_to_image(map->mlx, map->tx->banner[2]);
 	map->img->banner[3] = mlx_texture_to_image(map->mlx, map->tx->banner[3]);
+	map->img->banner[4] = mlx_texture_to_image(map->mlx, map->tx->banner[4]);
+	map->img->banner[5] = mlx_texture_to_image(map->mlx, map->tx->banner[5]);
 }
 
 void	init_png(t_map *map)

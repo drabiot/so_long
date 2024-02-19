@@ -75,7 +75,8 @@ SRCS		=		main.c \
 					animation.c \
 					defeat.c \
 					score.c \
-					counter_init.c
+					counter_init.c \
+					track_score.c
 
 OBJS		=		$(SRCS:.c=.o)
 
