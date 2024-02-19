@@ -12,6 +12,9 @@
 
 #include "../include/so_long.h"
 
+/*
+** Generate the textures of the numbers
+*/
 void	texture_numbers(t_map *map)
 {
 	map->tx->number[0] = mlx_load_png("./textures/0.png");
@@ -27,6 +30,9 @@ void	texture_numbers(t_map *map)
 	map->tx->number[10] = mlx_load_png("./textures/separator.png");
 }
 
+/*
+** Convert the textures of the numbers into images
+*/
 void	image_numbers(t_map *map)
 {
 	map->img->number[0] = mlx_texture_to_image(map->mlx, map->tx->number[0]);
@@ -42,6 +48,9 @@ void	image_numbers(t_map *map)
 	map->img->number[10] = mlx_texture_to_image(map->mlx, map->tx->number[10]);
 }
 
+/*
+** Place the numbers in the correct positions within the given position
+*/
 static void	display_numbers(t_map *map, int x)
 {
 	int	y;
@@ -59,6 +68,9 @@ static void	display_numbers(t_map *map, int x)
 	mlx_image_to_window(map->mlx, map->img->number[9], x, y);
 }
 
+/*
+** Place the banner behind the numbers and behind any potential numbers
+*/
 static void	display_layout_banner(t_map *map)
 {
 	int	i;
@@ -77,6 +89,10 @@ static void	display_layout_banner(t_map *map)
 	}
 }
 
+/*
+** Place the numbers in the correct positions within the game
+** & place the banner in the right place
+*/
 void	display_counter(t_map *map)
 {
 	int	i;

@@ -25,7 +25,7 @@ GFLAGS		=		$(CFLAGS) -g
 MLX_FLAGS	=		-ldl -lX11 -lglfw -lm -lz -lbsd -lXext
 
 ifdef CHECK
-	GFLAGS += -fsanitize=address
+	GFLAGS += 		-fsanitize=address
 endif
 
 #=========== COLOR ============#
@@ -61,22 +61,23 @@ SRCS		=		main.c \
 					check_map.c \
 					check_walls.c \
 					check_path.c \
-					player_init.c \
 					copy_map.c \
-					init_images.c \
-					game_init.c \
 					ft_random.c \
+					player_init.c \
+					images_init.c \
+					game_init.c \
 					display.c \
+					animation.c \
 					key_press.c \
 					enemy_init.c \
 					ai_enemy.c \
 					calculate_cost.c \
 					move_enemy.c \
-					animation.c \
 					defeat.c \
 					score.c \
 					counter_init.c \
-					track_score.c
+					track_score.c \
+					sound.c
 
 OBJS		=		$(SRCS:.c=.o)
 

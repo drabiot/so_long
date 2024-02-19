@@ -12,6 +12,9 @@
 
 #include "../include/so_long.h"
 
+/*
+** hide all the numbers of one instance (tile)
+*/
 void	hide_all_number(t_map *map, int instance)
 {
 	map->img->number[0]->instances[instance].enabled = 0;
@@ -26,11 +29,17 @@ void	hide_all_number(t_map *map, int instance)
 	map->img->number[9]->instances[instance].enabled = 0;
 }
 
+/*
+** Reveal the given number into the given instance (tile)
+*/
 void	reveal_number(t_map *map, int instance, int value)
 {
 	map->img->number[value]->instances[instance].enabled = 1;
 }
 
+/*
+** Update the move score of the player
+*/
 void	update_score(t_map *map, int move)
 {
 	hide_all_number(map, 0);
@@ -43,6 +52,9 @@ void	update_score(t_map *map, int move)
 	reveal_number(map, 2, move);
 }
 
+/*
+** Look at and modify the appearance of the score banner based on the score
+*/
 int	track_coll_unity(t_map *map, int i, int coll)
 {
 	if (coll >= 0)
@@ -55,6 +67,9 @@ int	track_coll_unity(t_map *map, int i, int coll)
 	return (i);
 }
 
+/*
+** Look at and split the given score
+*/
 int	track_coll_base(t_map *map, int i, int coll)
 {
 	while (coll >= 0)

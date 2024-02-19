@@ -13,6 +13,9 @@
 #include "../include/so_long.h"
 #include "../include/ft_printf.h"
 
+/*
+** Close the window after a certain time following the player's death
+*/
 static void	death_screen(t_map *map)
 {
 	static int	ticks = 0;
@@ -24,6 +27,9 @@ static void	death_screen(t_map *map)
 	}
 }
 
+/*
+** Display the death banner after the player's death with the given coordinate
+*/
 static void	show_banner(t_map *map, int len, int middle)
 {
 	int	top;
@@ -36,6 +42,9 @@ static void	show_banner(t_map *map, int len, int middle)
 	mlx_image_to_window(map->mlx, map->img->banner[2], len, bottom);
 }
 
+/*
+** Display the full death banner after the player's death
+*/
 static void	title_screen(t_map *map)
 {
 	static int	ticks = 0;
@@ -63,6 +72,9 @@ static void	title_screen(t_map *map)
 	}
 }
 
+/*
+** Add an appearing effect to the banner
+*/
 static void	add_banner(t_map *map, int middle)
 {
 	int	frame;
@@ -76,11 +88,15 @@ static void	add_banner(t_map *map, int middle)
 	}
 }
 
+/*
+** Perform all the necessary actions after the player's death
+*/
 void	defeat(t_map *map)
 {
 	int	middle;
 
 	map->dead = 1;
+	play_sound("sounds/death.wav &");
 	if (map->height % 2 != 0)
 		middle = (map->height / 2) + 1;
 	else

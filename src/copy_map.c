@@ -13,6 +13,9 @@
 #include "../include/so_long.h"
 #include "../include/libft.h"
 
+/*
+** Free the given list
+*/
 static void	free_map(char **map)
 {
 	int	i;
@@ -26,6 +29,12 @@ static void	free_map(char **map)
 	free(map);
 }
 
+/*
+** Change the characters of the map as follows:
+** Replace '1' with 'W'
+** Replace '0' and 'P' with 'O'
+** Replace 'C' and 'E' with 'F'
+*/
 static char	**change_charac_map(t_map *real_map, char **map)
 {
 	int	i;
@@ -50,6 +59,9 @@ static char	**change_charac_map(t_map *real_map, char **map)
 	return (map);
 }
 
+/*
+** Duplicate the given map (char **) and return it
+*/
 char	**copy_map(t_map *map)
 {
 	int		i;

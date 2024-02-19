@@ -14,8 +14,8 @@
 #include "../include/libft.h"
 
 /*
- * See if there a newline in the string
- */
+** See if there a newline in the string
+*/
 int	new_line(char *str)
 {
 	int	i;
@@ -33,8 +33,8 @@ int	new_line(char *str)
 }
 
 /*
- * Join two string
- */
+** Join two string
+*/
 char	*ft_strjoin_gnl(char *s1, char *s2)
 {
 	char	*ar;
@@ -51,9 +51,9 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 }
 
 /*
- * If check_nl == 0 : Copy the source until he see a newline to destination
- * If check_nl != 0 : Copy the source to destination
- */
+** If check_nl == 0 : Copy the source until he see a newline to destination
+** If check_nl != 0 : Copy the source to destination
+*/
 char	*ft_strccpy(char *dst, const char *src, int check_nl)
 {
 	size_t	i;

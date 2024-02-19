@@ -13,6 +13,9 @@
 #include "../include/so_long.h"
 #include "../include/ft_printf.h"
 
+/*
+** Check if the player touches an enemy and perform the actions if they do
+*/
 static void	touch_enemy(t_map *map)
 {
 	int	i;
@@ -31,12 +34,15 @@ static void	touch_enemy(t_map *map)
 		if ((map->img->enemy[0]->instances[i].y == player_y
 				&& map->img->enemy[0]->instances[i].x == player_x)
 			&& (map->img->enemy[0]->instances[i].y != exit_y
-				&& map->img->enemy[0]->instances[i].x != exit_x))
+				|| map->img->enemy[0]->instances[i].x != exit_x))
 			defeat(map);
 		i--;
 	}
 }
 
+/*
+** Check if the player is on the open exit and perform the action if they are
+*/
 static void	enter_trapdoor(t_map *map)
 {
 	if (map->display_map[map->player->pos_y][map->player->pos_x] == 'E'
@@ -47,6 +53,10 @@ static void	enter_trapdoor(t_map *map)
 	}
 }
 
+/*
+** Check if the player collects a collectible and perform
+** the actions if they do
+*/
 static void	player_grab_collectible(t_map *map)
 {
 	int	i;
@@ -66,6 +76,7 @@ static void	player_grab_collectible(t_map *map)
 			i++;
 		map->img->collec[0]->instances[i].enabled = 0;
 		map->img->collec[1]->instances[i].enabled = 0;
+		play_collectible();
 	}
 	if (map->player->coll == map->tot_coll)
 	{
@@ -74,6 +85,9 @@ static void	player_grab_collectible(t_map *map)
 	}
 }
 
+/*
+** Move the player to the correct position
+*/
 static void	move_player(t_map *map, int new_x, int new_y)
 {
 	static int	nb_move = 0;
@@ -100,6 +114,9 @@ static void	move_player(t_map *map, int new_x, int new_y)
 	touch_enemy(map);
 }
 
+/*
+** Check the pressed key and take action accordingly
+*/
 void	key_press(mlx_key_data_t keydata, t_map *map)
 {
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)

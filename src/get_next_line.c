@@ -14,8 +14,8 @@
 #include "../include/libft.h"
 
 /*
- * Take a file descriptor & copy the content to a stash
- */
+** Take a file descriptor & copy the content to a stash
+*/
 
 char	*read_buff(int fd, char *stash)
 {
@@ -42,8 +42,8 @@ char	*read_buff(int fd, char *stash)
 }
 
 /*
- * Take the stash and copy its content until he detect a newline
- */
+** Take the stash and copy its content until he detect a newline
+*/
 
 char	*add_to_line(char *stash)
 {
@@ -65,8 +65,8 @@ char	*add_to_line(char *stash)
 }
 
 /*
- * clean the stash of what he added in add_to_line()
- */
+** clean the stash of what he added in add_to_line()
+*/
 
 char	*clean_stash(char *stash)
 {
@@ -94,8 +94,8 @@ char	*clean_stash(char *stash)
 }
 
 /*
- * Take a file descriptor & return the line we wanted
- */
+** Take a file descriptor & return the line we wanted
+*/
 
 char	*get_next_line(int fd)
 {

@@ -12,6 +12,9 @@
 
 #include "../include/so_long.h"
 
+/*
+** Take coordinates x and y and look for the smallest value around them
+*/
 static int	check_min(char **map, int x, int y)
 {
 	int	min;
@@ -28,6 +31,9 @@ static int	check_min(char **map, int x, int y)
 	return (min);
 }
 
+/*
+** Check the flood fill
+*/
 void	check_flood_enemy(char **map, char **travel_map, int x, int y)
 {
 	if (travel_map[y][x] == 'O' || travel_map[y][x] == 'W'
@@ -42,6 +48,10 @@ void	check_flood_enemy(char **map, char **travel_map, int x, int y)
 	check_flood_enemy(map, travel_map, x - 1, y);
 }
 
+/*
+** Flood fill the map and assign a value to each of the
+** cells based on the given starting position
+*/
 void	ai_enemy(char **map, char **travel_map, int x, int y)
 {
 	if (travel_map[y][x] == '1' || travel_map[y][x] == 'W'

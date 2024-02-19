@@ -12,6 +12,9 @@
 
 #include "../include/so_long.h"
 
+/*
+** Move the enemies to the correct positions
+*/
 static void	execute_movement(t_map *map, char **cpy_map, int i)
 {
 	int	enemy_x;
@@ -37,6 +40,9 @@ static void	execute_movement(t_map *map, char **cpy_map, int i)
 		map->display_map[enemy_y][enemy_x] = 'D';
 }
 
+/*
+** Check if the enemies are within a distance of 7 tiles from the player
+*/
 static int	range_enemy(t_map *map, int i)
 {
 	int	player_x;
@@ -55,6 +61,9 @@ static int	range_enemy(t_map *map, int i)
 		return (0);
 }
 
+/*
+** Move the enemies
+*/
 void	move_enemy(t_map *map, char **cpy_map)
 {
 	int	i;

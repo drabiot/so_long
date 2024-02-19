@@ -12,11 +12,17 @@
 
 #include "../include/so_long.h"
 
+/*
+** Display the collectible's score
+*/
 static void	scoring(t_map *map)
 {
 	display_score_collectible(map);
 }
 
+/*
+** Iniatizate the game
+*/
 void	game_init(t_map *map, t_player *player)
 {
 	(void)player;

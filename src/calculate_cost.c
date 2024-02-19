@@ -12,6 +12,10 @@
 
 #include "../include/so_long.h"
 
+/*
+** Look for the smallest value around the given coordinates
+** on the horizontal axis
+*/
 int	cost_move_enemy_x(char **map, int x, int y)
 {
 	int	min;
@@ -24,6 +28,10 @@ int	cost_move_enemy_x(char **map, int x, int y)
 	return (min);
 }
 
+/*
+** Look for the smallest value around the given coordinates
+** on the vertical axis
+*/
 int	cost_move_enemy_y(char **map, int x, int y)
 {
 	int	min;
@@ -36,6 +44,10 @@ int	cost_move_enemy_y(char **map, int x, int y)
 	return (min);
 }
 
+/*
+** Check if the enemy should move up or down based
+** on the given coordinates
+*/
 int	move_enemy_x(char **map, int x, int y)
 {
 	int	min;
@@ -51,6 +63,10 @@ int	move_enemy_x(char **map, int x, int y)
 	return (1);
 }
 
+/*
+** Check if the enemy should move right or left based
+** on the given coordinates
+*/
 int	move_enemy_y(char **map, int x, int y)
 {
 	int	min;

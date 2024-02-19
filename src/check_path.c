@@ -13,6 +13,9 @@
 #include "../include/so_long.h"
 #include "../include/libft.h"
 
+/*
+** Fill the values of one list into another
+*/
 static void	copy_base_struct(t_map **map, t_map *copy)
 {
 	copy->height = (*map)->height;
@@ -26,6 +29,9 @@ static void	copy_base_struct(t_map **map, t_map *copy)
 	}
 }
 
+/*
+** Duplicate the list passed as a parameter
+*/
 static t_map	*copy_struct(t_map **map)
 {
 	t_map	*copy;
@@ -50,6 +56,9 @@ static t_map	*copy_struct(t_map **map)
 	return (copy);
 }
 
+/*
+** Flood fill the map starting from the given coordinate of the player
+*/
 void	ft_flood_fill(t_map **map, int x, int y)
 {
 	t_map	*current;
@@ -70,6 +79,10 @@ void	ft_flood_fill(t_map **map, int x, int y)
 		return ;
 }
 
+/*
+** Check the flood fill to verify if the map is correct
+** & everything is accessible
+*/
 static int	check_flood_fill(t_map *copy)
 {
 	int	i;
@@ -95,6 +108,10 @@ static int	check_flood_fill(t_map *copy)
 	return (0);
 }
 
+/*
+** Check the validity of the map and ensure that the exit
+** & all the collectibles are accessible
+*/
 void	check_path(t_map **map, t_player **player, char *arg)
 {
 	t_map	*copy;

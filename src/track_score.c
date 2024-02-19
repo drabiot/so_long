@@ -12,6 +12,9 @@
 
 #include "../include/so_long.h"
 
+/*
+** Display the score's numbers within the map
+*/
 static void	display_score_numbers(t_map *map, int x)
 {
 	int	y;
@@ -30,6 +33,9 @@ static void	display_score_numbers(t_map *map, int x)
 	mlx_image_to_window(map->mlx, map->img->number[10], x, y);
 }
 
+/*
+** Display the right numbers at the start of the game
+*/
 void	display_numbers_coll(t_map *map)
 {
 	int	i;
@@ -53,6 +59,9 @@ void	display_numbers_coll(t_map *map)
 	}
 }
 
+/*
+** Hide all the numbers
+*/
 static void	hide_all_score(t_map *map)
 {
 	int	i;
@@ -66,6 +75,9 @@ static void	hide_all_score(t_map *map)
 	}
 }
 
+/*
+** Display the collectible score
+*/
 void	display_score_collectible(t_map *map)
 {
 	int	i;

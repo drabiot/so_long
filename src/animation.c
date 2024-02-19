@@ -12,6 +12,9 @@
 
 #include "../include/so_long.h"
 
+/*
+** Create the animation for the player
+*/
 static void	animation_player(t_map *map, int frame)
 {
 	if (!(map->img->player[0]->instances[0].enabled == 0
@@ -22,6 +25,9 @@ static void	animation_player(t_map *map, int frame)
 	}
 }
 
+/*
+** Create the animation for the colectibles
+*/
 static void	animation_collectible(t_map *map, int frame)
 {
 	int	i;
@@ -39,6 +45,9 @@ static void	animation_collectible(t_map *map, int frame)
 	}
 }
 
+/*
+** Create the animation for the enemies
+*/
 static void	animation_enemy(t_map *map, int frame)
 {
 	int	i;
@@ -52,6 +61,9 @@ static void	animation_enemy(t_map *map, int frame)
 	}
 }
 
+/*
+** Create the animation for the collectibles, the player & the enemies
+*/
 void	animation(t_map *map)
 {
 	static int	ticks = 0;

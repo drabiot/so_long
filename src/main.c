@@ -14,6 +14,9 @@
 #include "../include/libft.h"
 #include "../include/ft_printf.h"
 
+/*
+** Destroy the walls textures
+*/
 static void	destroy_walls_tx(t_map *map)
 {
 	mlx_delete_texture(map->tx->floor[0]);
@@ -29,6 +32,9 @@ static void	destroy_walls_tx(t_map *map)
 	mlx_delete_texture(map->tx->obs[0]);
 }
 
+/*
+** Destroy the numbers textures
+*/
 static void	destroy_numbers_tx(t_map *map)
 {
 	mlx_delete_texture(map->tx->number[0]);
@@ -44,6 +50,9 @@ static void	destroy_numbers_tx(t_map *map)
 	mlx_delete_texture(map->tx->number[10]);
 }
 
+/*
+** Destroy all the textures
+*/
 static void	destroy_texture(t_map *map)
 {
 	destroy_walls_tx(map);
@@ -66,6 +75,9 @@ static void	destroy_texture(t_map *map)
 	free(map->tx);
 }
 
+/*
+** Create path to maps
+*/
 static char	*create_arg(char *argv)
 {
 	char	*arg;
@@ -77,6 +89,9 @@ static char	*create_arg(char *argv)
 	return (arg);
 }
 
+/*
+** main
+*/
 int	main(int argc, char **argv)
 {
 	t_map		*map;

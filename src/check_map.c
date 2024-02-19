@@ -12,6 +12,9 @@
 
 #include "../include/so_long.h"
 
+/*
+** Check the number of player on the given map
+*/
 static void	check_player(t_map **map, char *arg)
 {
 	int		nb_player;
@@ -31,6 +34,9 @@ static void	check_player(t_map **map, char *arg)
 	}
 }
 
+/*
+** Check the number of exit on the given map
+*/
 static void	check_exit(t_map **map, char *arg)
 {
 	int		nb_exit;
@@ -50,6 +56,9 @@ static void	check_exit(t_map **map, char *arg)
 	}
 }
 
+/*
+** Check the number of collectibles on the given map
+*/
 static void	check_collectible(t_map **map, char *arg)
 {
 	int		nb_collectible;
@@ -67,6 +76,9 @@ static void	check_collectible(t_map **map, char *arg)
 	current->tot_coll = nb_collectible;
 }
 
+/*
+** Check the written characters on the given map
+*/
 static void	check_characters(t_map **map, char *arg)
 {
 	int		i;
@@ -96,6 +108,9 @@ static void	check_characters(t_map **map, char *arg)
 	}
 }
 
+/*
+** Check the validity of the given map
+*/
 void	check_map(t_map **map, char *arg)
 {
 	check_player(map, arg);

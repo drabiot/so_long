@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_images.c                                      :+:      :+:    :+:   */
+/*   images_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchartie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 18:22:09 by tchartie          #+#    #+#             */
-/*   Updated: 2024/01/17 18:51:31 by tchartie         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:45:30 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 #include "../include/ft_printf.h"
 
+/*
+** Generate the textures of the walls
+*/
 static void	texture_walls(t_map *map)
 {
 	map->tx->floor[0] = mlx_load_png("./textures/floor.png");
@@ -29,6 +32,9 @@ static void	texture_walls(t_map *map)
 	map->tx->obs[0] = mlx_load_png("./textures/pot.png");
 }
 
+/*
+** Generate the textures of the map
+*/
 static void	png_to_texture(t_map *map)
 {
 	map->tx = malloc(sizeof(t_textures));
@@ -52,6 +58,9 @@ static void	png_to_texture(t_map *map)
 	map->tx->banner[5] = mlx_load_png("./textures/layout_coll.png");
 }
 
+/*
+** Convert the textures of the walls into images
+*/
 static void	image_walls(t_map *map)
 {
 	map->img->floor[0] = mlx_texture_to_image(map->mlx, map->tx->floor[0]);
@@ -68,6 +77,9 @@ static void	image_walls(t_map *map)
 	map->img->obs[0] = mlx_texture_to_image(map->mlx, map->tx->obs[0]);
 }
 
+/*
+** Convert the textures of the map into images
+*/
 static void	texture_to_image(t_map *map)
 {
 	map->img = malloc(sizeof(t_images));
@@ -91,6 +103,9 @@ static void	texture_to_image(t_map *map)
 	map->img->banner[5] = mlx_texture_to_image(map->mlx, map->tx->banner[5]);
 }
 
+/*
+** Create textures and images
+*/
 void	init_png(t_map *map)
 {
 	png_to_texture(map);

@@ -12,6 +12,9 @@
 
 #include "../include/so_long.h"
 
+/*
+** Check if the map given as a parameter has walls on its upper part
+*/
 static void	check_up(t_map **map, char *arg)
 {
 	int		i;
@@ -32,6 +35,9 @@ static void	check_up(t_map **map, char *arg)
 	}
 }
 
+/*
+** Check if the map given as a parameter has walls on its lower part
+*/
 static void	check_down(t_map **map, char *arg)
 {
 	int		i;
@@ -52,6 +58,9 @@ static void	check_down(t_map **map, char *arg)
 	}
 }
 
+/*
+** Check if the map given as a parameter has walls on its right side
+*/
 static void	check_right(t_map **map, char *arg)
 {
 	int		i;
@@ -73,6 +82,9 @@ static void	check_right(t_map **map, char *arg)
 	}
 }
 
+/*
+** Check if the map given as a parameter has walls on its left side
+*/
 static void	check_left(t_map **map, char *arg)
 {
 	int		i;
@@ -93,6 +105,10 @@ static void	check_left(t_map **map, char *arg)
 	}
 }
 
+/*
+** Check the validity of the map by verifying if it
+** is properly surrounded by walls
+*/
 void	check_walls(t_map **map, char *arg)
 {
 	check_up(map, arg);

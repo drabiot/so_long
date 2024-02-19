@@ -12,6 +12,9 @@
 
 #include "../include/so_long.h"
 
+/*
+** Search for where the enemy should move on the map
+*/
 void	pathfinding_enemy(t_map *map)
 {
 	char	**cpy_map;
@@ -31,6 +34,9 @@ void	pathfinding_enemy(t_map *map)
 	free_matrix(travel_map);
 }
 
+/*
+** Display the map's enemies
+*/
 static void	display_enemy(t_map *map, int x, int y)
 {
 	int	nb_enemy;
@@ -44,6 +50,10 @@ static void	display_enemy(t_map *map, int x, int y)
 	map->img->enemy[1]->instances[nb_enemy].enabled = 0;
 }
 
+/*
+** Check the positions of the enemies to ensure they are
+** in the correct locations
+*/
 static void	check_pos_enemy(t_map *map)
 {
 	int	x;
@@ -70,6 +80,9 @@ static void	check_pos_enemy(t_map *map)
 	display_enemy(map, x, y);
 }
 
+/*
+** Initialize the number of enemies based on the given map
+*/
 void	enemy_init(t_map *map)
 {
 	int	nb_enemy;
