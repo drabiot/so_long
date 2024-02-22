@@ -103,7 +103,7 @@ int	check_nb(t_map *map, char c)
 */
 void	error_check(int error, char *arg)
 {
-	char	*error_message[14];
+	char	*error_message[15];
 
 	error_message[FEW_ARGV_ERROR] = "(Too few arguments)";
 	error_message[MANY_ARGV_ERROR] = "(Too many arguments)";
@@ -121,6 +121,7 @@ Colletible)";
 	error_message[NO_MAP_ERROR] = "(Can't load the map)";
 	error_message[MAP_ERROR] = "(The map's composed characters \
 isn't correct)";
+	error_message[MALLOC_ERROR] = "(Malloc error)";
 	ft_printf("Error\n%s\n", error_message[error]);
 	if (arg)
 		free(arg);

@@ -36,6 +36,7 @@ enum	e_error
 	PATH_COLLECTIBLE_ERROR,
 	NO_MAP_ERROR,
 	MAP_ERROR,
+	MALLOC_ERROR,
 } ;
 
 typedef struct s_textures
@@ -178,6 +179,13 @@ void	free_matrix(char **matrix);
 /*        Free the given list type map        */
 /* ****************************************** */
 void	free_struct_map(t_map *map);
+
+/* ****************************************** */
+/*            free_malloc_error()             */
+/*    Free map struct & player struct when    */
+/*      texture or image failed to load       */
+/* ****************************************** */
+void	free_malloc_error(t_map *map);
 
 /* ********************************************************** */
 /*                                                            */

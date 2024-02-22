@@ -65,6 +65,7 @@ SRCS		=		main.c \
 					ft_random.c \
 					player_init.c \
 					images_init.c \
+					malloc_error.c \
 					game_init.c \
 					display.c \
 					animation.c \

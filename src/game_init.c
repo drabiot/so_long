@@ -28,6 +28,8 @@ void	game_init(t_map *map, t_player *player)
 	(void)player;
 	map->mlx = mlx_init(map->width * SPRITE_PIXEL, map->height * SPRITE_PIXEL,
 			"so_long", false);
+	if (!map->mlx)
+		return ;
 	init_png(map);
 	ft_srand(map->height * map->width);
 	display_map(map, player);

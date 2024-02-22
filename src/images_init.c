@@ -30,6 +30,11 @@ static void	texture_walls(t_map *map)
 	map->tx->corner[2] = mlx_load_png("./textures/corner_dr.png");
 	map->tx->corner[3] = mlx_load_png("./textures/corner_dl.png");
 	map->tx->obs[0] = mlx_load_png("./textures/pot.png");
+	if (!map->tx->floor[0] || !map->tx->floor[1] || !map->tx->floor[2]
+		|| !map->tx->wall[0] || !map->tx->wall[1] || !map->tx->wall[2]
+		|| !map->tx->wall[3] || !map->tx->corner[0] || !map->tx->corner[1]
+		|| !map->tx->corner[2] || !map->tx->corner[3] || !map->tx->obs[0])
+		free_malloc_error(map);
 }
 
 /*
@@ -56,6 +61,12 @@ static void	png_to_texture(t_map *map)
 	map->tx->banner[3] = mlx_load_png("./textures/banner_title.png");
 	map->tx->banner[4] = mlx_load_png("./textures/layout_score.png");
 	map->tx->banner[5] = mlx_load_png("./textures/layout_coll.png");
+	if (!map->tx->player[0] || !map->tx->player[1] || !map->tx->collec[0]
+		|| !map->tx->collec[1] || !map->tx->exit[0] || !map->tx->exit[1]
+		|| !map->tx->enemy[0] || !map->tx->enemy[1] || !map->tx->banner[0]
+		|| !map->tx->banner[1] || !map->tx->banner[2] || !map->tx->banner[3]
+		|| !map->tx->banner[4] || !map->tx->banner[5])
+		free_malloc_error(map);
 }
 
 /*
@@ -75,6 +86,11 @@ static void	image_walls(t_map *map)
 	map->img->corner[2] = mlx_texture_to_image(map->mlx, map->tx->corner[2]);
 	map->img->corner[3] = mlx_texture_to_image(map->mlx, map->tx->corner[3]);
 	map->img->obs[0] = mlx_texture_to_image(map->mlx, map->tx->obs[0]);
+	if (!map->img->floor[0] || !map->img->floor[1] || !map->img->floor[2]
+		|| !map->img->wall[0] || !map->img->wall[1] || !map->img->wall[2]
+		|| !map->img->wall[3] || !map->img->corner[0] || !map->img->corner[1]
+		|| !map->img->corner[2] || !map->img->corner[3] || !map->img->obs[0])
+		free_malloc_error(map);
 }
 
 /*
@@ -101,6 +117,12 @@ static void	texture_to_image(t_map *map)
 	map->img->banner[3] = mlx_texture_to_image(map->mlx, map->tx->banner[3]);
 	map->img->banner[4] = mlx_texture_to_image(map->mlx, map->tx->banner[4]);
 	map->img->banner[5] = mlx_texture_to_image(map->mlx, map->tx->banner[5]);
+	if (!map->img->player[0] || !map->img->player[1] || !map->img->collec[0]
+		|| !map->img->collec[1] || !map->img->exit[0] || !map->img->exit[1]
+		|| !map->img->enemy[0] || !map->img->enemy[1] || !map->img->banner[0]
+		|| !map->img->banner[1] || !map->img->banner[2] || !map->img->banner[3]
+		|| !map->img->banner[4] || !map->img->banner[5])
+		free_malloc_error(map);
 }
 
 /*

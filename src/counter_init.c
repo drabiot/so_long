@@ -28,6 +28,11 @@ void	texture_numbers(t_map *map)
 	map->tx->number[8] = mlx_load_png("./textures/8.png");
 	map->tx->number[9] = mlx_load_png("./textures/9.png");
 	map->tx->number[10] = mlx_load_png("./textures/separator.png");
+	if (!map->tx->number[0] || !map->tx->number[1] || !map->tx->number[2]
+		|| !map->tx->number[3] || !map->tx->number[4] || !map->tx->number[5]
+		|| !map->tx->number[6] || !map->tx->number[7] || !map->tx->number[8]
+		|| !map->tx->number[9] || !map->tx->number[10])
+		free_malloc_error(map);
 }
 
 /*
@@ -46,6 +51,11 @@ void	image_numbers(t_map *map)
 	map->img->number[8] = mlx_texture_to_image(map->mlx, map->tx->number[8]);
 	map->img->number[9] = mlx_texture_to_image(map->mlx, map->tx->number[9]);
 	map->img->number[10] = mlx_texture_to_image(map->mlx, map->tx->number[10]);
+	if (!map->img->number[0] || !map->img->number[1] || !map->img->number[2]
+		|| !map->img->number[3] || !map->img->number[4] || !map->img->number[5]
+		|| !map->img->number[6] || !map->img->number[7] || !map->img->number[8]
+		|| !map->img->number[9] || !map->img->number[10])
+		free_malloc_error(map);
 }
 
 /*
