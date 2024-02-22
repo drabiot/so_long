@@ -98,10 +98,12 @@ makelibft :
 					@make -C $(LIBFT_DIR) all --no-print-directory
 makeprintf :
 					@make -C $(PRINTF_DIR) all --no-print-directory
+					
+first :				makemlx
 
-$(NAME) :			makemlx $(OBJS_F) | makelibft makeprintf
+$(NAME) :			$(OBJS_F) | makelibft makeprintf
 					@$(CC) $(OBJS_F) $(MLX_FLAGS) -o $(NAME) -Llibft -lft -Lft_printf -l:ft_printf.a -Lmlx42/src -lmlx42 -I$(INCLUDE_DIR) -I$(INC_MLX_DIR) $(GFLAGS)
-					@echo "$(GREEN)Pipex successfully compiled! $(BASE_COLOR)"
+					@echo "$(GREEN)So_long successfully compiled! $(BASE_COLOR)"
 
 $(OBJS_DIR)%.o :	$(SRCS_DIR)%.c $(INCLUDE)
 					@mkdir -p $(OBJS_DIR)
@@ -112,17 +114,17 @@ clean :
 					@rm -rf $(OBJS_DIR)
 					@make -C $(LIBFT_DIR) clean --no-print-directory
 					@make -C $(PRINTF_DIR) clean --no-print-directory
-					@echo "$(BLUE)Pipex objects files cleanned! $(BASE_COLOR)"
+					@echo "$(BLUE)So_long objects files cleanned! $(BASE_COLOR)"
 
 fclean :
 					@rm -rf $(OBJS_DIR)
 					@rm -rf $(MLX_DIR)
-					@echo "$(BLUE)Pipex objects files cleanned! $(BASE_COLOR)"
+					@echo "$(BLUE)So_long objects files cleanned! $(BASE_COLOR)"
 					@rm -rf $(NAME)
-					@echo "$(CYAN)Pipex executable file cleanned! $(BASE_COLOR)"
+					@echo "$(CYAN)So_long executable file cleanned! $(BASE_COLOR)"
 					@make -C $(LIBFT_DIR) fclean --no-print-directory
 					@make -C $(PRINTF_DIR) fclean --no-print-directory
 					
 re :				fclean all
 
-.PHONY :			all makemlx makelibft makeprintf clean fclean re
+.PHONY :			all makemlx makelibft makeprintf makefirst clean fclean re

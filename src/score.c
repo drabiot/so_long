@@ -42,6 +42,7 @@ void	reveal_number(t_map *map, int instance, int value)
 */
 void	update_score(t_map *map, int move)
 {
+	move %= 1000;
 	hide_all_number(map, 0);
 	reveal_number(map, 0, (move / 100));
 	move %= 100;

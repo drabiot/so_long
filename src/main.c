@@ -86,12 +86,11 @@ static char	*create_arg(char *argv)
 		arg = ft_strjoin(ft_strdup("maps/"), ft_strdup(argv));
 	else
 		arg = ft_strdup(argv);
+	if (!arg)
+		error_check(NO_MAP_ERROR, arg);
 	return (arg);
 }
 
-/*
-** main
-*/
 int	main(int argc, char **argv)
 {
 	t_map		*map;
