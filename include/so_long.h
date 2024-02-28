@@ -187,6 +187,11 @@ void	free_struct_map(t_map *map);
 /* ****************************************** */
 void	free_malloc_error(t_map *map);
 
+void	error_texture(t_map *map);
+void	destroy_walls_tx(t_map *map);
+
+void	destroy_numbers_tx(t_map *map);
+void	destroy_texture(t_map *map);
 /* ********************************************************** */
 /*                                                            */
 /*                        ft_random.c                         */
@@ -272,7 +277,7 @@ void	animation(t_map *map);
 /*               player_init()                */
 /*         Initialize the player list         */
 /* ****************************************** */
-void	player_init(t_map **map, t_player **player);
+void	player_init(t_map **map, t_player **player, char *arg);
 
 /* ****************************************** */
 /*              display_player()              */

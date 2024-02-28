@@ -14,9 +14,6 @@
 #include "../include/ft_printf.h"
 #include "../include/libft.h"
 
-/*
-** Free the given list type map
-*/
 void	free_struct_map(t_map *map)
 {
 	int	i;
@@ -29,13 +26,12 @@ void	free_struct_map(t_map *map)
 		free(map->display_map[i]);
 		i++;
 	}
+	if (map->player)
+		free(map->player);
 	free(map->display_map);
 	free (map);
 }
 
-/*
-** Free the given matrix & its arrays
-*/
 void	free_matrix(char **matrix)
 {
 	int	i;
@@ -51,9 +47,6 @@ void	free_matrix(char **matrix)
 	free(matrix);
 }
 
-/*
-** Check for the given map's extension
-*/
 void	extension_check(char *map, char *arg)
 {
 	int	len;
@@ -98,9 +91,6 @@ int	check_nb(t_map *map, char c)
 	return (nb);
 }
 
-/*
-** Create error messages
-*/
 void	error_check(int error, char *arg)
 {
 	char	*error_message[15];

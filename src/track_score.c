@@ -12,9 +12,6 @@
 
 #include "../include/so_long.h"
 
-/*
-** Display the score's numbers within the map
-*/
 static void	display_score_numbers(t_map *map, int x)
 {
 	int	y;
@@ -75,9 +72,6 @@ static void	hide_all_score(t_map *map)
 	}
 }
 
-/*
-** Display the collectible score
-*/
 void	display_score_collectible(t_map *map)
 {
 	int	i;

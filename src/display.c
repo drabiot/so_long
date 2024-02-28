@@ -12,9 +12,6 @@
 
 #include "../include/so_long.h"
 
-/*
-** Display randomly the map's floor
-*/
 void	display_floor(t_map *map, int i, int j)
 {
 	int	rand;
@@ -32,9 +29,6 @@ void	display_floor(t_map *map, int i, int j)
 		mlx_image_to_window(map->mlx, map->img->floor[2], x, y);
 }
 
-/*
-** Display the map's outer walls
-*/
 static void	display_wall(t_map *map, int i, int j)
 {
 	int	x;
@@ -62,9 +56,6 @@ static void	display_wall(t_map *map, int i, int j)
 		mlx_image_to_window(map->mlx, map->img->obs[0], x, y);
 }
 
-/*
-** Display the map's exit
-*/
 static void	display_exit(t_map *map, int i, int j)
 {
 	int	x;
@@ -77,9 +68,6 @@ static void	display_exit(t_map *map, int i, int j)
 	map->img->exit[1]->instances[0].enabled = 0;
 }
 
-/*
-** Display the map's collectibles
-*/
 static void	display_coll(t_map *map, int i, int j)
 {
 	int		x;
@@ -97,9 +85,6 @@ static void	display_coll(t_map *map, int i, int j)
 	}
 }
 
-/*
-** Display everything related to the map
-*/
 void	display_map(t_map *map, t_player *player)
 {
 	int	i;

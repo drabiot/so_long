@@ -23,6 +23,7 @@ static void	death_screen(t_map *map)
 	ticks++;
 	if (ticks % 120 == 0)
 	{
+		kill_sounds();
 		mlx_close_window(map->mlx);
 	}
 }
@@ -88,9 +89,6 @@ static void	add_banner(t_map *map, int middle)
 	}
 }
 
-/*
-** Perform all the necessary actions after the player's death
-*/
 void	defeat(t_map *map)
 {
 	int	middle;

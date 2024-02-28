@@ -43,8 +43,15 @@ static void	touch_enemy(t_map *map)
 /*
 ** Check if the player is on the open exit and perform the action if they are
 */
-static void	enter_trapdoor(t_map *map)
+static void	action_trapdoor(t_map *map)
 {
+	static int	open = 0;
+
+	if (map->player->coll == map->tot_coll && open == 0)
+	{
+		play_sound("sounds/trapdoor.wav &");
+		open = 1;
+	}
 	if (map->display_map[map->player->pos_y][map->player->pos_x] == 'E'
 		&& map->img->exit[1]->instances[0].enabled == 1)
 	{
@@ -110,7 +117,7 @@ static void	move_player(t_map *map, int new_x, int new_y)
 	}
 	update_score(map, nb_move);
 	player_grab_collectible(map);
-	enter_trapdoor(map);
+	action_trapdoor(map);
 	touch_enemy(map);
 }
 

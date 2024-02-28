@@ -31,9 +31,6 @@ static int	check_min(char **map, int x, int y)
 	return (min);
 }
 
-/*
-** Check the flood fill
-*/
 void	check_flood_enemy(char **map, char **travel_map, int x, int y)
 {
 	if (travel_map[y][x] == 'O' || travel_map[y][x] == 'W'

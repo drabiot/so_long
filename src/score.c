@@ -73,6 +73,7 @@ int	track_coll_unity(t_map *map, int i, int coll)
 */
 int	track_coll_base(t_map *map, int i, int coll)
 {
+	coll %= 1000;
 	while (coll >= 0)
 	{
 		if (coll / 100 > 0)

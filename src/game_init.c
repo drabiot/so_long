@@ -12,24 +12,17 @@
 
 #include "../include/so_long.h"
 
-/*
-** Display the collectible's score
-*/
 static void	scoring(t_map *map)
 {
 	display_score_collectible(map);
 }
 
-/*
-** Iniatizate the game
-*/
 void	game_init(t_map *map, t_player *player)
 {
-	(void)player;
 	map->mlx = mlx_init(map->width * SPRITE_PIXEL, map->height * SPRITE_PIXEL,
 			"so_long", false);
 	if (!map->mlx)
-		return ;
+		free_malloc_error(map);
 	init_png(map);
 	ft_srand(map->height * map->width);
 	display_map(map, player);

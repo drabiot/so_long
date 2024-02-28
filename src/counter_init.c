@@ -12,9 +12,6 @@
 
 #include "../include/so_long.h"
 
-/*
-** Generate the textures of the numbers
-*/
 void	texture_numbers(t_map *map)
 {
 	map->tx->number[0] = mlx_load_png("./textures/0.png");
@@ -32,12 +29,14 @@ void	texture_numbers(t_map *map)
 		|| !map->tx->number[3] || !map->tx->number[4] || !map->tx->number[5]
 		|| !map->tx->number[6] || !map->tx->number[7] || !map->tx->number[8]
 		|| !map->tx->number[9] || !map->tx->number[10])
+	{
+		destroy_numbers_tx(map);
+		destroy_walls_tx(map);
+		free(map->tx);
 		free_malloc_error(map);
+	}
 }
 
-/*
-** Convert the textures of the numbers into images
-*/
 void	image_numbers(t_map *map)
 {
 	map->img->number[0] = mlx_texture_to_image(map->mlx, map->tx->number[0]);
@@ -58,9 +57,6 @@ void	image_numbers(t_map *map)
 		free_malloc_error(map);
 }
 
-/*
-** Place the numbers in the correct positions within the given position
-*/
 static void	display_numbers(t_map *map, int x)
 {
 	int	y;

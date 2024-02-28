@@ -13,9 +13,6 @@
 #include "../include/so_long.h"
 #include "../include/libft.h"
 
-/*
-** Free the given list
-*/
 static void	free_map(char **map)
 {
 	int	i;

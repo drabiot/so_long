@@ -21,6 +21,7 @@ static void	copy_base_struct(t_map **map, t_map *copy)
 	copy->height = (*map)->height;
 	copy->width = (*map)->width;
 	copy->display_map = NULL;
+	copy->player = NULL;
 	copy->display_map = malloc(sizeof(char *) * (copy->height + 1));
 	if (!copy->display_map)
 	{
@@ -126,7 +127,6 @@ void	check_path(t_map **map, t_player **player, char *arg)
 	check = check_flood_fill(copy);
 	if (check != 0)
 	{
-		free(*player);
 		free_struct_map(copy);
 		free_struct_map(*map);
 		if (check == 1)

@@ -34,9 +34,6 @@ void	pathfinding_enemy(t_map *map)
 	free_matrix(travel_map);
 }
 
-/*
-** Display the map's enemies
-*/
 static void	display_enemy(t_map *map, int x, int y)
 {
 	int	nb_enemy;

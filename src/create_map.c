@@ -60,9 +60,6 @@ static void	check_null_line(char *full_map, char *arg)
 	}
 }
 
-/*
-** Initialize the values of the given list
-*/
 static void	init_value(t_map *map, int height, int width, char **split_map)
 {
 	map->width = width;
@@ -77,9 +74,6 @@ static void	init_value(t_map *map, int height, int width, char **split_map)
 	map->img = NULL;
 }
 
-/*
-** Assign values to the given list
-*/
 t_map	*map_node_init(t_map **map, char *full_map, int width, char *arg)
 {
 	char	**split_map;

@@ -13,9 +13,6 @@
 #include "../include/so_long.h"
 #include "../include/ft_printf.h"
 
-/*
-** Generate the textures of the walls
-*/
 static void	texture_walls(t_map *map)
 {
 	map->tx->floor[0] = mlx_load_png("./textures/floor.png");
@@ -34,12 +31,13 @@ static void	texture_walls(t_map *map)
 		|| !map->tx->wall[0] || !map->tx->wall[1] || !map->tx->wall[2]
 		|| !map->tx->wall[3] || !map->tx->corner[0] || !map->tx->corner[1]
 		|| !map->tx->corner[2] || !map->tx->corner[3] || !map->tx->obs[0])
+	{
+		destroy_walls_tx(map);
+		free(map->tx);
 		free_malloc_error(map);
+	}
 }
 
-/*
-** Generate the textures of the map
-*/
 static void	png_to_texture(t_map *map)
 {
 	map->tx = malloc(sizeof(t_textures));
@@ -66,12 +64,9 @@ static void	png_to_texture(t_map *map)
 		|| !map->tx->enemy[0] || !map->tx->enemy[1] || !map->tx->banner[0]
 		|| !map->tx->banner[1] || !map->tx->banner[2] || !map->tx->banner[3]
 		|| !map->tx->banner[4] || !map->tx->banner[5])
-		free_malloc_error(map);
+		error_texture(map);
 }
 
-/*
-** Convert the textures of the walls into images
-*/
 static void	image_walls(t_map *map)
 {
 	map->img->floor[0] = mlx_texture_to_image(map->mlx, map->tx->floor[0]);
@@ -93,9 +88,6 @@ static void	image_walls(t_map *map)
 		free_malloc_error(map);
 }
 
-/*
-** Convert the textures of the map into images
-*/
 static void	texture_to_image(t_map *map)
 {
 	map->img = malloc(sizeof(t_images));
@@ -125,9 +117,6 @@ static void	texture_to_image(t_map *map)
 		free_malloc_error(map);
 }
 
-/*
-** Create textures and images
-*/
 void	init_png(t_map *map)
 {
 	png_to_texture(map);

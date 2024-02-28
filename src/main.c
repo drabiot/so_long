@@ -12,71 +12,9 @@
 
 #include "../include/so_long.h"
 #include "../include/libft.h"
-#include "../include/ft_printf.h"
 
 /*
-** Destroy the walls textures
-*/
-static void	destroy_walls_tx(t_map *map)
-{
-	mlx_delete_texture(map->tx->floor[0]);
-	mlx_delete_texture(map->tx->floor[1]);
-	mlx_delete_texture(map->tx->floor[2]);
-	mlx_delete_texture(map->tx->wall[1]);
-	mlx_delete_texture(map->tx->wall[2]);
-	mlx_delete_texture(map->tx->wall[3]);
-	mlx_delete_texture(map->tx->corner[0]);
-	mlx_delete_texture(map->tx->corner[1]);
-	mlx_delete_texture(map->tx->corner[2]);
-	mlx_delete_texture(map->tx->corner[3]);
-	mlx_delete_texture(map->tx->obs[0]);
-}
-
-/*
-** Destroy the numbers textures
-*/
-static void	destroy_numbers_tx(t_map *map)
-{
-	mlx_delete_texture(map->tx->number[0]);
-	mlx_delete_texture(map->tx->number[1]);
-	mlx_delete_texture(map->tx->number[2]);
-	mlx_delete_texture(map->tx->number[3]);
-	mlx_delete_texture(map->tx->number[4]);
-	mlx_delete_texture(map->tx->number[5]);
-	mlx_delete_texture(map->tx->number[6]);
-	mlx_delete_texture(map->tx->number[7]);
-	mlx_delete_texture(map->tx->number[8]);
-	mlx_delete_texture(map->tx->number[9]);
-	mlx_delete_texture(map->tx->number[10]);
-}
-
-/*
-** Destroy all the textures
-*/
-static void	destroy_texture(t_map *map)
-{
-	destroy_walls_tx(map);
-	destroy_numbers_tx(map);
-	mlx_delete_texture(map->tx->player[0]);
-	mlx_delete_texture(map->tx->player[1]);
-	mlx_delete_texture(map->tx->wall[0]);
-	mlx_delete_texture(map->tx->collec[0]);
-	mlx_delete_texture(map->tx->collec[1]);
-	mlx_delete_texture(map->tx->exit[0]);
-	mlx_delete_texture(map->tx->exit[1]);
-	mlx_delete_texture(map->tx->enemy[0]);
-	mlx_delete_texture(map->tx->enemy[1]);
-	mlx_delete_texture(map->tx->banner[0]);
-	mlx_delete_texture(map->tx->banner[1]);
-	mlx_delete_texture(map->tx->banner[2]);
-	mlx_delete_texture(map->tx->banner[3]);
-	mlx_delete_texture(map->tx->banner[4]);
-	mlx_delete_texture(map->tx->banner[5]);
-	free(map->tx);
-}
-
-/*
-** Create path to maps
+** Create path leading to maps folder if needed
 */
 static char	*create_arg(char *argv)
 {
@@ -108,14 +46,14 @@ int	main(int argc, char **argv)
 		arg = create_arg(argv[1]);
 		extension_check(argv[1], arg);
 		map_init(&map, arg);
-		player_init(&map, &player);
+		player_init(&map, &player, arg);
 		check_path(&map, &player, arg);
 		free(arg);
 		game_init(map, player);
 		free(map->img);
+		destroy_numbers_tx(map);
 		destroy_texture(map);
 		mlx_terminate(map->mlx);
 		free_struct_map(map);
-		free(player);
 	}
 }

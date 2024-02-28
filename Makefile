@@ -126,6 +126,6 @@ fclean :
 					@make -C $(LIBFT_DIR) fclean --no-print-directory
 					@make -C $(PRINTF_DIR) fclean --no-print-directory
 					
-re :				fclean all
+re :				fclean first all
 
 .PHONY :			all makemlx makelibft makeprintf makefirst clean fclean re

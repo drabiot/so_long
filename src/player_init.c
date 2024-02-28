@@ -12,9 +12,6 @@
 
 #include "../include/so_long.h"
 
-/*
-** Add position of the player in the given list
-*/
 static void	add_pos_player(t_map **map, t_player **player)
 {
 	int	i;
@@ -37,9 +34,6 @@ static void	add_pos_player(t_map **map, t_player **player)
 	}
 }
 
-/*
-** Display the player
-*/
 void	display_player(t_map *map, t_player *player)
 {
 	int	x;
@@ -52,10 +46,7 @@ void	display_player(t_map *map, t_player *player)
 	map->img->player[1]->instances[0].enabled = 0;
 }
 
-/*
-** Initialize the player list
-*/
-void	player_init(t_map **map, t_player **player)
+void	player_init(t_map **map, t_player **player, char *arg)
 {
 	*player = malloc(sizeof(t_player));
 	if (!*player)
@@ -65,4 +56,10 @@ void	player_init(t_map **map, t_player **player)
 	(*player)->coll = 0;
 	add_pos_player(map, player);
 	(*map)->player = *player;
+	if (!(*map)->player)
+	{
+		free(arg);
+		free((*player));
+		free_malloc_error((*map));
+	}
 }
